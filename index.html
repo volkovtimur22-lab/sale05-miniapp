@@ -154,7 +154,7 @@
         tg.expand();
 
         const promos = [
-            { store: 'СуперМаркет', product: 'Молоко 3,2%', category: 'продукты', oldPrice: 99, newPrice: 79, discount: '20%', image: 'https://raw.githubusercontent.com/volkovtimur22-lab/sale05-miniapp/main/milk.jpg' },
+            { store: 'СуперМаркет', product: 'Молоко 3,2%', category: 'продукты', oldPrice: 99, newPrice: 79, discount: '20%', image: './milk.jpg' },
             { store: 'Бытовая техника', product: 'Пылесос X10', category: 'техника', oldPrice: 14990, newPrice: 11990, discount: '20%' },
             { store: 'Одежда', product: 'Футболка базовая', category: 'одежда', oldPrice: 1990, newPrice: 1390, discount: '30%' }
         ];
@@ -177,14 +177,15 @@
                     
                     card.innerHTML = `
                         <div class="info">
-                            <div class="store"> ${p.store}</div>
-                            <div class="product">${p.product} <span style="color:#aaa; font-size:0.85em">(${p.category})</span></div>
+                             <div class="store">\${p.store}</div>
+        <div class="product">${p.product} <span style="color:#aaa; font-size:0.85em">(${p.category})</span></div>
                         </div>
                         <div class="price-block">
                             <span class="old-price"> ${p.oldPrice} ₽</span>
                             <span class="new-price"> ${p.newPrice} ₽</span>
                             <span class="badge"> ${p.discount}</span>
                         </div>
+                        ${p.image ? `<img src="${p.image}" alt=" ${p.product}" style="width:80px; height:80px; object-fit:cover; border-radius:12px;">` : ''}
                     `;
                     container.appendChild(card);
                 });
