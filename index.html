@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Sale05 — Акции</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        :root {
+            /* Цвета будут перезаписаны темой Telegram, но нужны как фолбэк */
+            --bg-color: #f4f5f8;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #7f8c8d;
+            --price-old: #95a5a6;
+            --price-new: #27ae60;
+            --discount-bg: #e74c3c;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--tg-theme-bg-color, var(--bg-color));
+            color: var(--tg-theme-text-color, var(--text-main));
+            padding: 16px;
+            margin: 0;
+        }
+
+        h2 {
+            margin: 0 0 16px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--tg-theme-text-color, var(--text-main));
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid var(--tg-theme-secondary-bg-color, var(--border-color));
+            box-sizing: border-box;
+            font-size: 1rem;
+            background-color: var(--tg-theme-secondary-bg-color, var(--card-bg));
+            color: var(--tg-theme-text-color, var(--text-main));
+        }
+
+        #list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .card {
+            background: var(--tg-theme-secondary-bg-color, var(--card-bg));
+            border-radius: 16px;
+            padding: 16px;
+            display: grid;
+            grid-template-columns: 1fr auto; 
+            align-items: center;
+            gap: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--tg-theme-secondary-bg-color, var(--border-color));
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0;
+        }
+
+        .store {
+            font-weight: 700;
+            color: var(--tg-theme-text-color, #2c3e50);
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .product {
+            color: var(--tg-theme-hint-color, var(--text-secondary));
+            font-size: 0.95rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .price-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+            min-width: 110px;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: var(--tg-theme-hint-color, var(--price-old));
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+
+        .new-price {
+            font-weight: 700;
+            color: var(--tg-theme-button-color, var(--price-new));
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .badge {
+            background: var(--tg-theme-button-color, var(--discount-bg));
+            color: var(--tg-theme-button-text-color, white);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 500px) {
+            .card { grid-template-columns: 1fr; }
+            .price-block { align-self: stretch; text-align: right; margin-top: 12px; }
+            .store, .product { white-space: normal; text-overflow: clip; }
+        }
+    </style>
+</head>
+<body>
+    <h2>Sale05 — скидки и акции</h2>
+    
+    <div class="controls">
+        <input id="search" type="text" placeholder="Поиск по товару/магазину">
+        <select id="category">
+            <option value="">Все категории</option>
+            <option value="продукты">Продукты</option>
+            <option value="техника">Техника</option>
+            <option value="одежда">Одежда</option>
+        </select>
+    </div>
+
+    <div id="list"></div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+
+        const promos = [
+            { store: 'СуперМаркет', product: 'Молоко 3,2%', category: 'продукты', oldPrice: 99, newPrice: 79, discount: '20%' },
+            { store: 'Бытовая техника', product: 'Пылесос X10', category: 'техника', oldPrice: 14990, newPrice: 11990, discount: '20%' },
+            { store: 'Одежда', product: 'Футболка базовая', category: 'одежда', oldPrice: 1990, newPrice: 1390, discount: '30%' }
+        ];
+
+        function render() {
+            const q = document.getElementById('search').value.toLowerCase();
+            const cat = document.getElementById('category').value;
+            const container = document.getElementById('list');
+            container.innerHTML = '';
+
+            const filtered = promos.filter(p =>
+                (!q || p.product.toLowerCase().includes(q) || p.store.toLowerCase().includes(q)) &&
+                (!cat || p.category === cat)
+            );
+
+            if (filtered.length > 0) {
+                filtered.forEach(p => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    
+                    card.innerHTML = `
+                        <div class="info">
+                            <div class="store"> ${p.store}</div>
+                            <div class="product">${p.product} <span style="color:#aaa; font-size:0.85em">(${p.category})</span></div>
+                        </div>
+                        <div class="price-block">
+                            <span class="old-price"> ${p.oldPrice} ₽</span>
+                            <span class="new-price"> ${p.newPrice} ₽</span>
+                            <span class="badge"> ${p.discount}</span>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            } else {
+                container.innerHTML = '<div style="padding:24px; color:#999; text-align:center; background:var(--tg-theme-secondary-bg-color, #fff); border-radius:16px;">Ничего не найдено</div>';
+            }
+        }
+
+        document.getElementById('search').addEventListener('input', render);
+        document.getElementById('category').addEventListener('change', render);
+        
+        render();
+    </script>
+</body>
+</html>
