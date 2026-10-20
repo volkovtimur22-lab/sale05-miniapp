@@ -126,10 +126,41 @@
             text-transform: uppercase;
         }
 
-        @media (max-width: 500px) {
-            .card { grid-template-columns: 1fr; }
-            .price-block { align-self: stretch; text-align: right; margin-top: 12px; }
-            .store, .product { white-space: normal; text-overflow: clip; }
+           .card img {
+            grid-area: img;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 12px;
+            align-self: center;
+        }
+
+         img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+@media (max-width: 500px) {
+            .card {
+                grid-template-columns: 1fr;
+                grid-template-areas: "info" "img" "price";
+            }
+            .price-block {
+                align-self: stretch;
+                text-align: right;
+                margin-top: 12px;
+            }
+            .store, .product {
+                white-space: normal;
+                text-overflow: clip;
+            }
+            .card img {
+                width: 100%;
+                height: auto;
+                border-radius: 12px;
+                align-self: stretch;
+            }
         }
     </style>
 </head>
