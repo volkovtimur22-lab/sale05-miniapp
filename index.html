@@ -57,15 +57,15 @@
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(135deg, rgba(255, 246, 235, 0.55), rgba(255, 237, 212, 0.35)),
-        url('https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1400&q=80');
+        linear-gradient(135deg, rgba(255, 246, 235, 0.4), rgba(255, 237, 212, 0.2)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200"><defs><linearGradient id="bg" x1="0" x2="1"><stop offset="0" stop-color="%23f7d9ad"/><stop offset="1" stop-color="%23f4a65b"/></linearGradient></defs><rect width="1200" height="1200" fill="url(%23bg)"/><g opacity="0.9"><ellipse cx="250" cy="330" rx="220" ry="160" fill="%23f6c877"/><ellipse cx="880" cy="420" rx="245" ry="180" fill="%23f4a871"/><ellipse cx="630" cy="830" rx="300" ry="190" fill="%23f2dca8"/><g transform="translate(420 420)"><path d="M0 180C40 40 180 20 260 120C320 190 310 300 220 350L70 360C-30 320 -40 230 0 180Z" fill="%23e18d45"/><path d="M60 220C110 110 190 110 245 180C200 250 130 275 60 220Z" fill="%23d1a04a"/><path d="M40 150C95 90 190 90 240 150" stroke="%2387552c" stroke-width="18" fill="none"/><path d="M70 185L195 185" stroke="%236a9f3d" stroke-width="12" linecap="round"/><path d="M70 205L218 205" stroke="%232e8c3a" stroke-width="12" linecap="round"/><path d="M86 232L178 232" stroke="%2395d75f" stroke-width="10" linecap="round"/><path d="M90 120C100 80 120 55 150 45C178 55 192 84 198 118" fill="%23f4d2a0" opacity="0.8"/></g></g></svg>');
       background-size: cover;
       background-position: center;
-      filter: blur(4px) saturate(1.15) contrast(1.08);
-      opacity: 0.24;
+      filter: blur(5px) saturate(1.2) contrast(1.08);
+      opacity: 0.22;
       z-index: 0;
       pointer-events: none;
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
 
     body::after {
@@ -271,7 +271,7 @@
       margin-bottom: 18px;
       background:
         linear-gradient(135deg, rgba(20,12,9,0.7), rgba(71,32,18,0.82)),
-        url('https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900"><defs><linearGradient id="a" x1="0" x2="1"><stop offset="0" stop-color="%23f1c77a"/><stop offset="1" stop-color="%23d77935"/></linearGradient></defs><rect width="1400" height="900" fill="%23291a14"/><g opacity="0.9"><circle cx="240" cy="210" r="130" fill="%23ffbd68"/><circle cx="1180" cy="220" r="150" fill="%23ff9b66"/><path d="M380 540C410 390 510 330 620 350C760 380 820 410 900 540L990 720H290L380 540Z" fill="url(%23a)"/><path d="M470 500C515 420 580 390 650 410C720 430 760 470 790 530C740 610 660 650 560 640C510 620 485 570 470 500Z" fill="%23c66d34"/><path d="M540 520C590 465 665 465 715 520" stroke="%2364482d" stroke-width="18" fill="none"/><path d="M505 565H775" stroke="%2352a446" stroke-width="20" stroke-linecap="round"/><path d="M525 610H750" stroke="%238fcd5d" stroke-width="14" stroke-linecap="round"/><path d="M565 670H715" stroke="%23c9e46a" stroke-width="10" stroke-linecap="round"/></g></svg>') center/cover no-repeat;
       color: white;
       box-shadow: 0 18px 30px rgba(61, 34, 21, 0.24);
       border: 1px solid rgba(255,255,255,0.12);
@@ -1067,8 +1067,8 @@
       </div>
 
       <div class="categories" id="main-categories">
-        <button class="category active" data-category="all">Все</button>
-        <button class="category" data-category="shawarma">Шаурма</button>
+        <button class="category" data-category="all">Все</button>
+        <button class="category active" data-category="shawarma">Шаурма</button>
         <button class="category" data-category="drinks">Напитки</button>
       </div>
 
@@ -1147,6 +1147,89 @@
   </div>
 
   <script>
+    function buildShawarmaArt(theme) {
+      const { wrap, fill, meat, greens, sauce, shadow } = theme;
+      return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="420" height="280" viewBox="0 0 420 280">
+          <defs>
+            <linearGradient id="bg" x1="0" x2="1">
+              <stop offset="0" stop-color="#fff4d8"/>
+              <stop offset="1" stop-color="#ffe0b7"/>
+            </linearGradient>
+            <linearGradient id="wrapfill" x1="0" x2="1">
+              <stop offset="0" stop-color="${wrap[0]}"/>
+              <stop offset="1" stop-color="${wrap[1]}"/>
+            </linearGradient>
+          </defs>
+          <rect width="420" height="280" fill="url(#bg)"/>
+          <circle cx="80" cy="60" r="46" fill="#ffd89c" opacity="0.7"/>
+          <circle cx="350" cy="72" r="38" fill="#f4c1a0" opacity="0.6"/>
+          <path d="M80 210C120 110 240 90 330 140C365 170 380 214 370 236C290 262 160 266 80 210Z" fill="url(#wrapfill)"/>
+          <path d="M96 197C144 141 215 120 295 147C325 158 348 182 352 214C321 232 180 252 96 197Z" fill="${fill}"/>
+          <path d="M102 189C154 131 228 122 297 151" stroke="${shadow}" stroke-width="18" stroke-linecap="round" fill="none"/>
+          <path d="M115 196L174 154" stroke="${greens[0]}" stroke-width="18" stroke-linecap="round"/>
+          <path d="M170 166L248 154" stroke="${greens[1]}" stroke-width="18" stroke-linecap="round"/>
+          <path d="M182 192L258 171" stroke="${greens[2]}" stroke-width="18" stroke-linecap="round"/>
+          <path d="M137 167C154 120 216 116 257 169" stroke="${meat}" stroke-width="22" stroke-linecap="round" fill="none"/>
+          <path d="M170 186C189 143 243 142 274 181" stroke="${sauce}" stroke-width="12" stroke-linecap="round" fill="none"/>
+          <circle cx="150" cy="140" r="11" fill="${greens[0]}"/>
+          <circle cx="220" cy="130" r="10" fill="${greens[1]}"/>
+          <circle cx="278" cy="140" r="10" fill="${greens[2]}"/>
+          <path d="M132 214L290 214" stroke="${sauce}" stroke-width="10" stroke-linecap="round" opacity="0.9"/>
+          <ellipse cx="204" cy="100" rx="116" ry="30" fill="#fff" opacity="0.28"/>
+        </svg>
+      `);
+    }
+
+    function buildDrinkArt(kind) {
+      const palette = {
+        cola: { body: '#d73a2c', cap: '#f3d9bb', glow: '#ffefb7', label: '#f9f1de' },
+        pepsi: { body: '#2e79c5', cap: '#e3e7ff', glow: '#bfe4ff', label: '#edf7ff' },
+        ayran: { body: '#d4f3ff', cap: '#e8f5ff', glow: '#9be1f7', label: '#ffffff' },
+        compote: { body: '#cb6b3d', cap: '#f0d0a0', glow: '#ffc98d', label: '#fff1d4' },
+        juice: { body: '#f3b31a', cap: '#f8e7b4', glow: '#ffd98a', label: '#fff7d6' }
+      };
+      const selected = palette[kind] || palette.cola;
+
+      return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="420" height="280" viewBox="0 0 420 280">
+          <defs>
+            <linearGradient id="bg" x1="0" x2="1">
+              <stop offset="0" stop-color="#fff2db"/>
+              <stop offset="1" stop-color="#f8d6a5"/>
+            </linearGradient>
+            <linearGradient id="bottle" x1="0" x2="1">
+              <stop offset="0" stop-color="${selected.body}"/>
+              <stop offset="1" stop-color="${selected.glow}"/>
+            </linearGradient>
+          </defs>
+          <rect width="420" height="280" fill="url(#bg)"/>
+          <circle cx="340" cy="60" r="34" fill="${selected.glow}" opacity="0.5"/>
+          <path d="M170 62H250V88H170Z" fill="${selected.cap}"/>
+          <rect x="160" y="90" width="100" height="130" rx="18" fill="url(#bottle)"/>
+          <rect x="176" y="103" width="68" height="92" rx="12" fill="${selected.label}" opacity="0.72"/>
+          <path d="M190 125C207 112 214 112 231 124" stroke="${selected.body}" stroke-width="8" stroke-linecap="round" fill="none"/>
+          <path d="M190 150C205 140 214 140 231 150" stroke="${selected.body}" stroke-width="8" stroke-linecap="round" fill="none"/>
+          <path d="M190 176C205 167 214 167 231 176" stroke="${selected.body}" stroke-width="8" stroke-linecap="round" fill="none"/>
+          <circle cx="126" cy="196" r="22" fill="${selected.glow}" opacity="0.45"/>
+          <circle cx="298" cy="214" r="26" fill="${selected.glow}" opacity="0.38"/>
+        </svg>
+      `);
+    }
+
+    function buildSetArt(type, variant) {
+      if (type === 'shawarma') {
+        const palette = {
+          classic: { wrap: ['#f3d58b', '#d17b2d'], fill: '#f8eab5', meat: '#8d4a2a', greens: ['#6ca54f', '#78c96d', '#3a8d43'], sauce: '#e5ba4c', shadow: '#8a592d' },
+          black: { wrap: ['#d0b78b', '#a8672d'], fill: '#efe4d0', meat: '#6a3d1f', greens: ['#497c4d', '#76b436', '#2c694b'], sauce: '#e5c06c', shadow: '#5a2d1a' },
+          green: { wrap: ['#ebd5a0', '#d28b3f'], fill: '#f2f3d0', meat: '#9d5d32', greens: ['#4b9c52', '#8ad26c', '#5b9f47'], sauce: '#e7d771', shadow: '#6e4d27' }
+        };
+        return buildShawarmaArt(palette[variant] || palette.classic);
+      }
+      const keys = ['cola', 'pepsi', 'ayran', 'compote', 'juice'];
+      return buildDrinkArt(keys.includes(variant) ? variant : 'cola');
+    }
+
     const shawarmaTypes = [
       {
         id: 'lavash',
@@ -1158,14 +1241,12 @@
         price: 240,
         oldPrice: 280,
         discount: 'Скидка 15%',
-        description: 'Мягкий лаваш, свежие овощи и сочное мясо — настоящий классический вкус.',
+        description: 'Мягкий лаваш, сочное мясо и свежие овощи с фирменным соусом.',
         features: ['Горячая подача', 'Свежие овощи', 'Фирменный соус'],
         images: [
-          'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80'
+          buildSetArt('shawarma', 'classic'),
+          buildSetArt('shawarma', 'black'),
+          buildSetArt('shawarma', 'green')
         ],
         baseIngredients: ['Лук', 'Помидоры', 'Огурцы', 'Салат', 'Перец', 'Маринованный огурец'],
         sauces: ['Кетчуп', 'Чесночный', 'Томатный', 'Сырный', 'Барбекю'],
@@ -1181,14 +1262,12 @@
         price: 260,
         oldPrice: 310,
         discount: 'Комбо',
-        description: 'Ароматная булка, мягкая начинка и крепкий вкус с лёгкой сырной ноткой.',
+        description: 'Ароматная булка, плотная начинка и пикантный вкус с сырной ноткой.',
         features: ['В булке', 'Пикантный вкус', 'Сырная корочка'],
         images: [
-          'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=1200&q=80'
+          buildSetArt('shawarma', 'black'),
+          buildSetArt('shawarma', 'classic'),
+          buildSetArt('shawarma', 'green')
         ],
         baseIngredients: ['Лук', 'Помидоры', 'Салат', 'Капуста', 'Маринованный лук', 'Зелень'],
         sauces: ['Кетчуп', 'Чесночный', 'Томатный', 'Сырный', 'Острый'],
@@ -1207,11 +1286,9 @@
         description: 'Пита с очень сочным наполнением, яркими овощами и насыщенным вкусом.',
         features: ['Пита', 'Набор начинки', 'Сочное мясо'],
         images: [
-          'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1604908553252-4c6f6d72d5f4?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1604908814898-d7c5f8d9d8a3?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=1200&q=80'
+          buildSetArt('shawarma', 'green'),
+          buildSetArt('shawarma', 'classic'),
+          buildSetArt('shawarma', 'black')
         ],
         baseIngredients: ['Лук', 'Помидоры', 'Салат', 'Огурцы', 'Кукуруза', 'Перец'],
         sauces: ['Кетчуп', 'Чесночный', 'Томатный', 'Сырный', 'Острый'],
@@ -1230,14 +1307,12 @@
         price: 95,
         oldPrice: 120,
         discount: 'Холодная',
-        description: 'Классическая газировка, холодная и освежающая.',
+        description: 'Классическая газировка, холодная и освежающая',
         features: ['0.33 л', 'Газировка', 'Освежает'],
         images: [
-          'https://images.unsplash.com/photo-1622483767028-3f66f2b7420b?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1610878180933-123728745d8d?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1513558161293-cdaf765ed2e6?auto=format&fit=crop&w=1200&q=80'
+          buildSetArt('drink', 'cola'),
+          buildSetArt('drink', 'pepsi'),
+          buildSetArt('drink', 'ayran')
         ],
         baseIngredients: ['Классическая'],
         sauces: [],
@@ -1256,11 +1331,9 @@
         description: 'Лёгкая газировка с ярким вкусом и приятной пеной.',
         features: ['0.33 л', 'Газировка', 'Холодная'],
         images: [
-          'https://images.unsplash.com/photo-1513558161293-cdaf765ed2e6?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1622483767028-3f66f2b7420b?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1610878180933-123728745d8d?auto=format&fit=crop&w=1200&q=80'
+          buildSetArt('drink', 'pepsi'),
+          buildSetArt('drink', 'cola'),
+          buildSetArt('drink', 'juice')
         ],
         baseIngredients: ['Классическая'],
         sauces: [],
@@ -1279,11 +1352,9 @@
         description: 'Пробиотический напиток с лёгкой кислинкой и приятным вкусом.',
         features: ['0.5 л', 'Молочный', 'Освежает'],
         images: [
-          'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1513558161293-cdaf765ed2e6?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80'
+          buildSetArt('drink', 'ayran'),
+          buildSetArt('drink', 'compote'),
+          buildSetArt('drink', 'juice')
         ],
         baseIngredients: ['Классический'],
         sauces: [],
@@ -1302,11 +1373,9 @@
         description: 'Свежий фруктовый компот в удобной бутылке, идеально к шаурме.',
         features: ['0.5 л', 'Фруктовый', 'Натуральный'],
         images: [
-          'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1622483767028-3f66f2b7420b?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1513558161293-cdaf765ed2e6?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=1200&q=80'
+          buildSetArt('drink', 'compote'),
+          buildSetArt('drink', 'juice'),
+          buildSetArt('drink', 'cola')
         ],
         baseIngredients: ['Яблоко', 'Вишня', 'Груша'],
         sauces: [],
@@ -1325,11 +1394,9 @@
         description: 'Натуральный сок разных вкусов: яблоко, апельсин, вишня, гранат.',
         features: ['250 мл', 'Натуральный', 'Много вкусов'],
         images: [
-          'https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1513558161293-cdaf765ed2e6?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1200&q=80'
+          buildSetArt('drink', 'juice'),
+          buildSetArt('drink', 'compote'),
+          buildSetArt('drink', 'ayran')
         ],
         baseIngredients: ['Яблоко', 'Апельсин', 'Вишня', 'Гранат'],
         sauces: [],
@@ -1341,7 +1408,7 @@
 
     const appState = {
       currentPage: 'home',
-      activeCategory: 'all',
+      activeCategory: 'shawarma',
       searchTerm: '',
       sortMode: 'popular',
       cart: [],
@@ -1375,7 +1442,7 @@
     function startBootScreen() {
       setTimeout(() => {
         document.getElementById('boot-screen').classList.add('hidden');
-      }, 1200);
+      }, 1000);
     }
 
     function formatPrice(value) {
@@ -1407,28 +1474,27 @@
       const drinkItems = products.filter((item) => item.category === 'drinks');
 
       const sections = [
-        { title: 'Шаурма', count: shawarmaItems.length, items: shawarmaItems },
-        { title: 'Напитки', count: drinkItems.length, items: drinkItems }
-      ];
-
-      const visibleSections = sections.filter((section) => {
+        { title: 'Шаурма', items: shawarmaItems },
+        { title: 'Напитки', items: drinkItems }
+      ].filter((section) => {
         if (appState.activeCategory === 'all') return true;
         if (appState.activeCategory === 'shawarma') return section.title === 'Шаурма';
         if (appState.activeCategory === 'drinks') return section.title === 'Напитки';
         return false;
       });
 
-      if (!visibleSections.some((section) => section.items.length)) {
+      if (!sections.some((section) => section.items.length)) {
         homeContent.innerHTML = '<div class="empty-state">Ничего не найдено. Попробуйте другой поиск.</div>';
         return;
       }
 
-      homeContent.innerHTML = visibleSections.map((section) => {
+      homeContent.innerHTML = sections.map((section) => {
+        if (!section.items.length) return '';
         return `
           <div class="section-block">
             <div class="section-header">
               <h3>${section.title}</h3>
-              <span class="badge-small">${section.count} видов</span>
+              <span class="badge-small">${section.items.length} видов</span>
             </div>
             <div class="product-grid">
               ${section.items.map((product) => `
@@ -1624,14 +1690,8 @@
             const type = button.dataset.type;
             const value = button.dataset.value;
 
-            if (type === 'meat') {
-              appState.selectedMeat = value;
-            }
-
-            if (type === 'sauce') {
-              appState.selectedSauce = value;
-            }
-
+            if (type === 'meat') appState.selectedMeat = value;
+            if (type === 'sauce') appState.selectedSauce = value;
             if (type === 'ingredient') {
               if (appState.selectedIngredients.includes(value)) {
                 appState.selectedIngredients = appState.selectedIngredients.filter((item) => item !== value);
@@ -1650,7 +1710,6 @@
 
     function addItemToCart(product) {
       const itemKey = `${product.id}-${appState.selectedMeat || 'classic'}-${(appState.selectedIngredients || []).join('|')}-${appState.selectedSauce || 'classic'}`;
-
       const existing = appState.cart.find((item) => item.cartKey === itemKey);
 
       if (existing) {
