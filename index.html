@@ -41,6 +41,7 @@
     }
 
     body {
+      position: relative;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -49,6 +50,32 @@
         radial-gradient(circle at 12% 10%, rgba(255, 179, 94, 0.32), transparent 20%),
         radial-gradient(circle at 86% 18%, rgba(255, 122, 158, 0.35), transparent 18%),
         radial-gradient(circle at 70% 76%, rgba(125, 196, 255, 0.28), transparent 22%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(135deg, rgba(255, 246, 235, 0.55), rgba(255, 237, 212, 0.35)),
+        url('https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1400&q=80');
+      background-size: cover;
+      background-position: center;
+      filter: blur(4px) saturate(1.15) contrast(1.08);
+      opacity: 0.24;
+      z-index: 0;
+      pointer-events: none;
+      transform: scale(1.05);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255,247,239,0.8) 0%, rgba(255,247,239,0.48) 18%, rgba(255,247,239,0.7) 100%);
+      z-index: 0;
+      pointer-events: none;
     }
 
     button, input, select {
@@ -224,6 +251,8 @@
     }
 
     .content {
+      position: relative;
+      z-index: 1;
       flex: 1;
       padding: 16px 16px 94px;
       overflow-y: auto;
@@ -241,8 +270,8 @@
       padding: 18px 16px 16px;
       margin-bottom: 18px;
       background:
-        linear-gradient(135deg, rgba(20,12,9,0.75), rgba(71,32,18,0.82)),
-        url('https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+        linear-gradient(135deg, rgba(20,12,9,0.7), rgba(71,32,18,0.82)),
+        url('https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
       color: white;
       box-shadow: 0 18px 30px rgba(61, 34, 21, 0.24);
       border: 1px solid rgba(255,255,255,0.12);
@@ -1029,7 +1058,7 @@
       <div class="hero">
         <div class="hero-tag">Новое меню</div>
         <h2>Шаурма как с картинки</h2>
-        <p>Весь ассортимент в одном мини-приложении: три вида шаурмы, напитки и выбор начинки по вкусу.</p>
+        <p>Вкусная шаурма, свежие начинки и напитки — всё в одном мини-приложении.</p>
         <div class="hero-row">
           <div class="mini-pill">🔥 Горячая</div>
           <div class="mini-pill">🥬 Свежие овощи</div>
@@ -1129,13 +1158,13 @@
         price: 240,
         oldPrice: 280,
         discount: 'Скидка 15%',
-        description: 'Подается в мягком лаваше с хрустящим салатом, томатами, луком и фирменным соусом.',
-        features: ['Горячая подача', 'Нежное мясо', 'Сыр с дырочками'],
+        description: 'Мягкий лаваш, свежие овощи и сочное мясо — настоящий классический вкус.',
+        features: ['Горячая подача', 'Свежие овощи', 'Фирменный соус'],
         images: [
           'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1200&q=80',
           'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80',
           'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80',
           'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80'
         ],
         baseIngredients: ['Лук', 'Помидоры', 'Огурцы', 'Салат', 'Перец', 'Маринованный огурец'],
@@ -1152,7 +1181,7 @@
         price: 260,
         oldPrice: 310,
         discount: 'Комбо',
-        description: 'Хрустящая булка, сочное мясо и идеальный баланс соуса с сыром и зеленью.',
+        description: 'Ароматная булка, мягкая начинка и крепкий вкус с лёгкой сырной ноткой.',
         features: ['В булке', 'Пикантный вкус', 'Сырная корочка'],
         images: [
           'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80',
@@ -1175,8 +1204,8 @@
         price: 280,
         oldPrice: 330,
         discount: 'Лучший выбор',
-        description: 'Пита с очень сочным начинением, яркими овощами и плавленным сыром.',
-        features: ['Пита', 'Набор начинки', 'Плотная структура'],
+        description: 'Пита с очень сочным наполнением, яркими овощами и насыщенным вкусом.',
+        features: ['Пита', 'Набор начинки', 'Сочное мясо'],
         images: [
           'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=80',
           'https://images.unsplash.com/photo-1604908553252-4c6f6d72d5f4?auto=format&fit=crop&w=1200&q=80',
@@ -1202,7 +1231,7 @@
         oldPrice: 120,
         discount: 'Холодная',
         description: 'Классическая газировка, холодная и освежающая.',
-        features: ['0.33 л', 'Газировка', 'Освежа��т'],
+        features: ['0.33 л', 'Газировка', 'Освежает'],
         images: [
           'https://images.unsplash.com/photo-1622483767028-3f66f2b7420b?auto=format&fit=crop&w=1200&q=80',
           'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1200&q=80',
@@ -1224,7 +1253,7 @@
         price: 95,
         oldPrice: 120,
         discount: 'Популярно',
-        description: 'Лёгкая газировка с густым вкусом и яркой пеной.',
+        description: 'Лёгкая газировка с ярким вкусом и приятной пеной.',
         features: ['0.33 л', 'Газировка', 'Холодная'],
         images: [
           'https://images.unsplash.com/photo-1513558161293-cdaf765ed2e6?auto=format&fit=crop&w=1200&q=80',
@@ -1247,7 +1276,7 @@
         price: 110,
         oldPrice: 130,
         discount: 'Свежо',
-        description: 'Пробиотический напиток с лёгкой кислинкой и комфортным вкусом.',
+        description: 'Пробиотический напиток с лёгкой кислинкой и приятным вкусом.',
         features: ['0.5 л', 'Молочный', 'Освежает'],
         images: [
           'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=1200&q=80',
@@ -1378,16 +1407,8 @@
       const drinkItems = products.filter((item) => item.category === 'drinks');
 
       const sections = [
-        {
-          title: 'Шаурма',
-          count: shawarmaItems.length,
-          items: shawarmaItems
-        },
-        {
-          title: 'Напитки',
-          count: drinkItems.length,
-          items: drinkItems
-        }
+        { title: 'Шаурма', count: shawarmaItems.length, items: shawarmaItems },
+        { title: 'Напитки', count: drinkItems.length, items: drinkItems }
       ];
 
       const visibleSections = sections.filter((section) => {
@@ -1455,12 +1476,7 @@
 
           if (!product) return;
 
-          if (button && button.dataset.action === 'add') {
-            openModal(product);
-            return;
-          }
-
-          if (button && button.dataset.action === 'preview') {
+          if (button && (button.dataset.action === 'add' || button.dataset.action === 'preview')) {
             openModal(product);
             return;
           }
@@ -1474,7 +1490,7 @@
       if (!appState.cart.length) {
         cartContent.innerHTML = '<div class="empty-state">Корзина пуста. Добавьте шаурму или напиток.</div>';
         cartBadge.textContent = '0';
-        cartCountBadge.textContent = '0 т��варов';
+        cartCountBadge.textContent = '0 товаров';
         return;
       }
 
@@ -1494,11 +1510,11 @@
                 </div>
                 <div>
                   <div class="cart-name">${item.name}</div>
-                  <div class="cart-price">${item.meat || ''} ${item.ingredients ? '· ' + item.ingredients.join(', ') : ''}</div>
+                  <div class="cart-price">${item.meat || ''} ${item.ingredients && item.ingredients.length ? '· ' + item.ingredients.join(', ') : ''}</div>
                   <div class="cart-price">${item.quantity} × ${formatPrice(item.price)}</div>
                 </div>
               </div>
-              <button class="remove-btn" data-remove-id="${item.id}">×</button>
+              <button class="remove-btn" data-remove-id="${item.cartKey}">×</button>
             </div>
           `).join('')}
         </div>
