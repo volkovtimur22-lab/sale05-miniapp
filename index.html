@@ -3,27 +3,24 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <title>Sale05 — Premium Mini App</title>
+  <title>Sale05 — Luxury Minimal</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     :root {
-      --bg: #0b1020;
-      --bg-top: #10182b;
-      --panel: #121a2d;
-      --panel-soft: #171f33;
-      --panel-alt: #0f1729;
-      --primary: #7a8dff;
-      --primary-2: #5ae0c7;
-      --primary-soft: rgba(122, 141, 255, 0.16);
-      --success: #38d392;
-      --success-soft: rgba(56, 211, 146, 0.12);
-      --accent: #ff8d5c;
-      --accent-2: #ff5d8f;
-      --text: #edf2ff;
-      --muted: #93a2c7;
-      --line: #1d2943;
-      --shadow: 0 12px 30px rgba(5, 8, 20, 0.42);
-      --radius: 22px;
+      --bg: #f5f1eb;
+      --bg-soft: #f8f3f0;
+      --panel: #fffdfb;
+      --panel-alt: #f2ece7;
+      --primary: #171412;
+      --primary-soft: rgba(23, 20, 18, 0.08);
+      --accent: #b07d5a;
+      --accent-soft: rgba(176, 125, 90, 0.12);
+      --text: #171412;
+      --muted: #675f5a;
+      --line: #e5ddd7;
+      --success: #2a7d5d;
+      --shadow: 0 12px 26px rgba(23, 20, 18, 0.06);
+      --radius: 20px;
     }
 
     * { box-sizing: border-box; }
@@ -31,10 +28,8 @@
     html, body {
       margin: 0;
       min-height: 100%;
-      background:
-        radial-gradient(circle at top, rgba(122, 141, 255, 0.16), transparent 28%),
-        linear-gradient(180deg, var(--bg-top) 0%, var(--bg) 100%);
-      color: var(--tg-theme-text-color, var(--text));
+      background: linear-gradient(180deg, #f7f3f0 0%, var(--bg) 100%);
+      color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
 
@@ -51,15 +46,14 @@
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 30;
+      z-index: 20;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 16px;
-      background: linear-gradient(135deg, #1b2340, #121a2d 52%, #1c2a48);
-      color: white;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
-      border-bottom: 1px solid rgba(255,255,255,0.04);
+      padding: 18px 16px;
+      background: rgba(255, 253, 251, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
     }
 
     .brand-wrap {
@@ -72,112 +66,97 @@
       width: 32px;
       height: 32px;
       border-radius: 10px;
-      background: rgba(255,255,255,0.12);
+      background: linear-gradient(135deg, #1c1a18, #473a31);
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 900;
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.9rem;
     }
 
     .brand {
-      font-size: 1.2rem;
       font-weight: 900;
-      letter-spacing: 0.02em;
-      color: var(--text);
+      letter-spacing: 0.08em;
+      font-size: 1.1rem;
     }
 
     .cart-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
       min-width: 32px;
       height: 32px;
       padding: 0 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 999px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
+      background: var(--panel-alt);
+      border: 1px solid var(--line);
       font-weight: 800;
       font-size: 0.8rem;
-      color: var(--text);
     }
 
     .content {
       flex: 1;
-      padding: 14px 16px 96px;
+      padding: 16px 16px 94px;
       overflow-y: auto;
     }
 
-    .content::-webkit-scrollbar { width: 0; height: 0; }
+    .content::-webkit-scrollbar { display: none; }
 
-    .promo {
-      background: linear-gradient(135deg, #121b35, #1d2d52 45%, #2e3f7d);
-      border: 1px solid rgba(122, 141, 255, 0.18);
-      color: white;
+    .page { display: none; }
+    .page.active { display: block; }
+
+    .hero {
+      background: linear-gradient(135deg, #f8efe9 0%, #f4f1ee 100%);
+      border: 1px solid var(--line);
       border-radius: 22px;
       padding: 18px 16px;
-      box-shadow: 0 18px 30px rgba(10, 13, 28, 0.4);
-      margin-bottom: 16px;
-      position: relative;
-      overflow: hidden;
+      margin-bottom: 15px;
+      box-shadow: var(--shadow);
     }
 
-    .promo::after {
-      content: '';
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 50%;
-      right: -20px;
-      top: -30px;
-    }
-
-    .promo-tag {
+    .hero-tag {
       display: inline-block;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 999px;
       padding: 6px 10px;
-      font-weight: 700;
-      font-size: 0.72rem;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--line);
+      font-size: 0.7rem;
+      font-weight: 800;
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
 
-    .promo h2 {
+    .hero h2 {
       margin: 12px 0 8px;
-      font-size: 1.56rem;
+      font-size: 1.5rem;
       line-height: 1.2;
-      color: var(--text);
     }
 
-    .promo p {
+    .hero p {
       margin: 0;
-      opacity: 0.9;
+      color: var(--muted);
       font-size: 0.92rem;
-      color: var(--text);
+      line-height: 1.5;
     }
 
-    .promo-row {
-      margin-top: 14px;
+    .hero-row {
       display: flex;
-      align-items: center;
-      gap: 8px;
       flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
     }
 
     .mini-pill {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.15);
+      gap: 6px;
+      border: 1px solid var(--line);
+      background: #fff;
       border-radius: 999px;
       padding: 7px 10px;
-      font-size: 0.76rem;
-      font-weight: 700;
+      font-size: 0.72rem;
+      font-weight: 800;
       color: var(--text);
     }
 
@@ -194,10 +173,10 @@
 
     .category {
       border: 1px solid var(--line);
-      background: rgba(18, 26, 45, 0.9);
+      background: var(--panel);
       color: var(--muted);
       border-radius: 999px;
-      padding: 9px 12px;
+      padding: 8px 12px;
       font-size: 0.8rem;
       font-weight: 800;
       white-space: nowrap;
@@ -206,9 +185,9 @@
     }
 
     .category.active {
-      background: linear-gradient(135deg, rgba(122,141,255,0.16), rgba(90,224,199,0.12));
-      border-color: rgba(122,141,255,0.25);
-      color: var(--text);
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
     }
 
     .toolbar {
@@ -218,31 +197,27 @@
       margin-bottom: 16px;
     }
 
-    .search-wrap {
-      flex: 1;
-    }
+    .search-wrap { flex: 1; }
 
     .search-input {
       width: 100%;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(18, 26, 45, 0.9);
-      color: var(--tg-theme-text-color, var(--text));
       padding: 12px 14px;
-      font-size: 0.95rem;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      color: var(--text);
       outline: none;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
     }
 
     .search-input:focus {
-      border-color: rgba(122,141,255,0.45);
-      box-shadow: 0 0 0 4px rgba(122,141,255,0.08);
+      box-shadow: 0 0 0 4px rgba(23, 20, 18, 0.04);
+      border-color: rgba(23, 20, 18, 0.18);
     }
 
     .sort-select {
+      background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 12px;
-      background: rgba(18, 26, 45, 0.9);
       color: var(--text);
       padding: 11px 12px;
       font-weight: 700;
@@ -256,7 +231,7 @@
     }
 
     .product-card {
-      background: linear-gradient(180deg, rgba(18,26,45,0.95), rgba(16,22,37,0.9));
+      background: var(--panel);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
@@ -266,21 +241,21 @@
       gap: 12px;
     }
 
-    .product-image-wrapper {
+    .product-image-wrap {
       position: relative;
       width: 94px;
       height: 94px;
       border-radius: 18px;
       overflow: hidden;
-      background: linear-gradient(135deg, #111b2e, #121d2c);
-      border: 1px solid rgba(255,255,255,0.04);
+      background: linear-gradient(135deg, #efe9e3, #e7e0db);
+      border: 1px solid rgba(23, 20, 18, 0.04);
     }
 
     .product-image {
       width: 100%;
       height: 100%;
-      object-fit: cover;
       display: block;
+      object-fit: cover;
     }
 
     .favorite-btn {
@@ -290,15 +265,15 @@
       width: 26px;
       height: 26px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.8);
       border: none;
-      color: #ff5d80;
+      color: #c15b5b;
       font-size: 0.9rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.06);
     }
 
     .product-info {
@@ -311,14 +286,14 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 6px;
+      gap: 8px;
     }
 
     .store-name {
       color: var(--muted);
       font-size: 0.7rem;
       font-weight: 800;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
     }
 
@@ -326,8 +301,8 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      background: rgba(255, 195, 71, 0.1);
-      color: #f4bf5b;
+      background: rgba(176, 125, 90, 0.12);
+      color: #8c6242;
       border-radius: 999px;
       padding: 4px 8px;
       font-size: 0.7rem;
@@ -335,33 +310,33 @@
     }
 
     .product-name {
-      font-size: 1rem;
+      margin-top: 5px;
+      color: var(--text);
       font-weight: 800;
+      font-size: 1rem;
       line-height: 1.35;
-      margin-top: 4px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      color: var(--text);
     }
 
     .desc {
-      font-size: 0.8rem;
+      margin-top: 6px;
       color: var(--muted);
-      margin-top: 5px;
+      font-size: 0.8rem;
+      line-height: 1.45;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      line-height: 1.45;
     }
 
     .meta-row {
+      margin-top: 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      margin-top: 10px;
     }
 
     .price-box {
@@ -372,26 +347,26 @@
 
     .old-price {
       color: var(--muted);
-      font-size: 0.73rem;
+      font-size: 0.72rem;
       text-decoration: line-through;
     }
 
     .new-price {
-      font-weight: 900;
-      font-size: 1.08rem;
       color: var(--success);
+      font-size: 1.06rem;
+      font-weight: 900;
     }
 
     .discount-badge {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: white;
       border-radius: 8px;
+      padding: 6px 8px;
       font-size: 0.72rem;
       font-weight: 800;
-      padding: 6px 8px;
+      background: rgba(176, 125, 90, 0.12);
+      color: #7b5638;
     }
 
     .btn-row {
@@ -410,23 +385,23 @@
       transition: transform 0.15s ease;
     }
 
-    .ghost-btn:active, .add-btn:active, .checkout-btn:active, .quantity-btn:active, .modal-action:active {
+    .ghost-btn:active, .add-btn:active, .checkout-btn:active, .quantity-btn:active, .modal-action:active, .remove-btn:active {
       transform: translateY(1px) scale(0.99);
     }
 
     .ghost-btn {
-      background: rgba(122, 141, 255, 0.12);
+      background: var(--panel-alt);
       color: var(--text);
-      flex: 0 0 auto;
+      border: 1px solid var(--line);
       min-width: 42px;
-      border: 1px solid rgba(122, 141, 255, 0.18);
+      flex: 0 0 auto;
     }
 
     .add-btn {
       flex: 1;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      background: var(--primary);
       color: white;
-      box-shadow: 0 12px 24px rgba(122, 141, 255, 0.28);
+      box-shadow: 0 10px 18px rgba(23, 20, 18, 0.12);
     }
 
     .bottom-nav {
@@ -434,14 +409,14 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(11,16,32,0.88);
-      backdrop-filter: blur(8px);
-      border-top: 1px solid var(--line);
+      padding: 10px 12px 18px;
       display: flex;
       justify-content: space-around;
       align-items: center;
-      padding: 10px 12px 18px;
-      z-index: 40;
+      background: rgba(255, 253, 251, 0.88);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid var(--line);
+      z-index: 30;
     }
 
     .nav-item {
@@ -464,16 +439,13 @@
 
     .nav-emoji { font-size: 1.4rem; line-height: 1; }
 
-    .page { display: none; }
-    .page.active { display: block; }
-
     .empty-state {
-      text-align: center;
-      color: var(--muted);
-      padding: 32px 16px;
-      background: rgba(18, 26, 45, 0.9);
+      background: var(--panel);
       border: 1px solid var(--line);
       border-radius: var(--radius);
+      color: var(--muted);
+      padding: 28px 16px;
+      text-align: center;
     }
 
     .cart-header {
@@ -486,7 +458,6 @@
     .cart-header h3 {
       margin: 0;
       font-size: 1.2rem;
-      color: var(--text);
     }
 
     .cart-list {
@@ -496,7 +467,7 @@
     }
 
     .cart-item {
-      background: rgba(18, 26, 45, 0.9);
+      background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 14px;
       padding: 12px;
@@ -518,16 +489,13 @@
       width: 42px;
       height: 42px;
       border-radius: 12px;
-      background: linear-gradient(135deg, #121d2f, #121d2e);
+      overflow: hidden;
+      background: linear-gradient(135deg, #efe9e3, #e7e0db);
+      border: 1px solid rgba(23,20,18,0.04);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--muted);
-      font-size: 0.7rem;
-      font-weight: 800;
       flex-shrink: 0;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.05);
     }
 
     .cart-thumb img {
@@ -538,65 +506,65 @@
 
     .cart-name {
       font-weight: 800;
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap;
-      color: var(--text);
     }
 
     .cart-price {
-      font-size: 0.82rem;
       color: var(--muted);
+      font-size: 0.8rem;
+      margin-top: 2px;
     }
 
     .remove-btn {
-      border: none;
-      background: rgba(239,93,93,0.12);
-      color: #ef5d5d;
       width: 32px;
       height: 32px;
+      border: 1px solid var(--line);
       border-radius: 10px;
-      font-size: 1.1rem;
-      cursor: pointer;
+      background: rgba(176,125,90,0.08);
+      color: #7b5638;
       font-weight: 900;
+      cursor: pointer;
     }
 
     .promo-box {
-      background: linear-gradient(135deg, rgba(255,141,92,0.12), rgba(122,141,255,0.08));
-      border: 1px solid rgba(255,141,92,0.18);
+      margin-top: 18px;
+      background: rgba(176,125,90,0.08);
+      border: 1px solid rgba(176,125,90,0.16);
       border-radius: 16px;
       padding: 10px 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      margin-top: 18px;
-      color: var(--text);
     }
 
-    .promo-box strong { color: var(--primary-2); }
+    .promo-box strong {
+      color: #7b5638;
+    }
 
     .promo-input {
       width: 100%;
-      border-radius: 10px;
-      border: 1px solid var(--line);
-      padding: 10px 12px;
-      background: rgba(18,26,45,0.9);
-      color: var(--text);
       margin-top: 12px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
       outline: none;
+      color: var(--text);
     }
 
     .cart-total {
       margin-top: 18px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      gap: 10px;
       font-weight: 900;
       font-size: 1.08rem;
       padding-top: 12px;
       border-top: 1px solid var(--line);
-      color: var(--text);
     }
 
     .checkout-btn {
@@ -604,18 +572,18 @@
       width: 100%;
       border: none;
       border-radius: 12px;
-      background: linear-gradient(135deg, #23b86a, #1ca560);
+      background: var(--primary);
       color: white;
       font-weight: 900;
       padding: 12px 16px;
       cursor: pointer;
-      box-shadow: 0 12px 20px rgba(35,184,106,0.22);
+      box-shadow: 0 10px 18px rgba(23,20,18,0.12);
     }
 
     .modal {
       position: fixed;
       inset: 0;
-      background: rgba(4, 7, 14, 0.68);
+      background: rgba(17, 15, 13, 0.26);
       display: flex;
       align-items: flex-end;
       justify-content: center;
@@ -632,13 +600,13 @@
 
     .modal-panel {
       width: min(560px, 100%);
-      background: linear-gradient(180deg, rgba(18,26,45,0.98), rgba(13,18,32,0.98));
+      background: linear-gradient(180deg, #fffdfb, #f6f1ee);
+      border: 1px solid var(--line);
       border-radius: 22px 22px 0 0;
       padding: 16px;
-      box-shadow: 0 -18px 40px rgba(0,0,0,0.14);
+      box-shadow: 0 -10px 24px rgba(17,15,13,0.08);
       transform: translateY(30px);
       transition: transform 0.2s ease;
-      border: 1px solid var(--line);
     }
 
     .modal.show .modal-panel {
@@ -647,23 +615,23 @@
 
     .modal-header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       margin-bottom: 12px;
       color: var(--text);
+      font-weight: 900;
     }
 
     .modal-close {
-      border: none;
-      background: rgba(122,141,255,0.12);
-      color: var(--text);
       width: 34px;
       height: 34px;
+      border: 1px solid var(--line);
+      background: var(--panel-alt);
       border-radius: 10px;
+      color: var(--text);
       font-size: 1.2rem;
       cursor: pointer;
-      font-weight: 800;
-      border: 1px solid rgba(122,141,255,0.15);
+      font-weight: 900;
     }
 
     .modal-image {
@@ -673,14 +641,13 @@
       border-radius: 20px;
       display: block;
       margin-bottom: 14px;
-      border: 1px solid rgba(255,255,255,0.04);
+      border: 1px solid rgba(23,20,18,0.04);
     }
 
     .modal-title {
+      margin: 0 0 6px;
       font-size: 1.32rem;
       font-weight: 900;
-      margin: 0 0 6px;
-      color: var(--text);
     }
 
     .modal-meta {
@@ -691,7 +658,7 @@
 
     .modal-desc {
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.55;
       font-size: 0.92rem;
       margin-bottom: 16px;
     }
@@ -707,10 +674,10 @@
     .qty-box {
       display: inline-flex;
       align-items: center;
-      background: rgba(122,141,255,0.08);
+      background: rgba(23,20,18,0.04);
       border-radius: 12px;
       overflow: hidden;
-      border: 1px solid rgba(122,141,255,0.14);
+      border: 1px solid var(--line);
     }
 
     .quantity-btn {
@@ -734,12 +701,12 @@
       width: 100%;
       border: none;
       border-radius: 12px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      background: var(--primary);
       color: white;
       padding: 12px 16px;
       cursor: pointer;
       font-weight: 900;
-      box-shadow: 0 12px 20px rgba(122,141,255,0.2);
+      box-shadow: 0 10px 18px rgba(23,20,18,0.12);
     }
 
     @media (min-width: 500px) {
@@ -755,20 +722,20 @@
   <header class="topbar">
     <div class="brand-wrap">
       <div class="brand-mark">S</div>
-      <div class="brand">Sale05</div>
+      <div class="brand">SALE05</div>
     </div>
     <div id="cart-badge" class="cart-pill">0</div>
   </header>
 
   <main class="content">
     <section id="page-catalog" class="page active">
-      <div class="promo">
-        <div class="promo-tag">Лимитированная акция</div>
-        <h2>Скидки до 40% на лучшие товары</h2>
-        <p>Новые акции каждую неделю. Бесплатная доставка от 1500 ₽.</p>
-        <div class="promo-row">
-          <div class="mini-pill">⚡ Быстрая доставка</div>
-          <div class="mini-pill">🎁 Подарки</div>
+      <div class="hero">
+        <div class="hero-tag">Luxury collection</div>
+        <h2>Только лучшие вещи и аксессуары</h2>
+        <p>Выбирайте стиль, который подчёркивает вашу индивидуальность.</p>
+        <div class="hero-row">
+          <div class="mini-pill">✦ Premium</div>
+          <div class="mini-pill">⏱ Fast delivery</div>
         </div>
       </div>
 
@@ -797,7 +764,7 @@
       <div id="cart-list" class="cart-list"></div>
 
       <div class="promo-box">
-        <span><strong>Промокод</strong> — работает на сумму от 1500 ₽</span>
+        <span><strong>Промокод</strong> — действует на сумму от 1500 ₽</span>
       </div>
       <input class="promo-input" type="text" placeholder="Введите промокод" />
 
@@ -820,7 +787,7 @@
   <div id="modal" class="modal" aria-hidden="true">
     <div class="modal-panel">
       <div class="modal-header">
-        <div style="font-weight:900; font-size:1.04rem;">Подробно</div>
+        <span>Подробно</span>
         <button id="close-modal" class="modal-close" type="button">×</button>
       </div>
       <img id="modal-image" class="modal-image" src="" alt="" />
@@ -853,29 +820,25 @@
       currentModalProduct: null,
       modalQty: 1,
       products: [
-        { id: 1, category: 'food', store: 'СуперМаркет', product: 'Молоко 3,2%', price: 79, discount: 20, image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=900&q=80', description: 'Свежий продукт с натуральным вкусом и высоким качеством.', rating: 4.8, stock: 27 },
-        { id: 2, category: 'food', store: 'СуперМаркет', product: 'Кефир 1%', price: 85, discount: 15, image: 'https://images.unsplash.com/photo-1570584191640-7dfe2ffeb65a?auto=format&fit=crop&w=900&q=80', description: 'Нежный кефир для завтрака, легкий и полезный.', rating: 4.7, stock: 18 },
-        { id: 3, category: 'food', store: 'FreshBox', product: 'Яблоки Gala', price: 189, discount: 12, image: 'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=900&q=80', description: 'Сладкие и хрустящие яблоки, идеальны для перекуса.', rating: 4.9, stock: 32 },
-        { id: 4, category: 'food', store: 'FreshBox', product: 'Авокадо', price: 160, discount: 10, image: 'https://images.unsplash.com/photo-1519162808019-7de1683fa2ad?auto=format&fit=crop&w=900&q=80', description: 'Спелое авокадо для смузи, салатов и завтраков.', rating: 4.6, stock: 22 },
-        { id: 5, category: 'tech', store: 'ТехноДом', product: 'Пылесос X10', price: 11990, discount: 20, image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80', description: 'Мощный и тихий пылесос для дома и квартиры.', rating: 4.9, stock: 9 },
-        { id: 6, category: 'tech', store: 'ТехноДом', product: 'Утюг Pro', price: 4500, discount: 10, image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80', description: 'Плавная глажка, защита ткани и быстрый нагрев.', rating: 4.5, stock: 15 },
-        { id: 7, category: 'tech', store: 'GadgetHub', product: 'Наушники Air Lite', price: 5990, discount: 25, image: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=80', description: 'Комфортный звук и долгий заряд в компактном корпусе.', rating: 4.8, stock: 12 },
-        { id: 8, category: 'tech', store: 'GadgetHub', product: 'Умная колонка', price: 8890, discount: 18, image: 'https://images.unsplash.com/photo-1518444065439-e933c06ce9cd?auto=format&fit=crop&w=900&q=80', description: 'Голосовой помощник, музыка и умный дом в одном.', rating: 4.7, stock: 11 },
-        { id: 9, category: 'fashion', store: 'FashionStyle', product: 'Футболка базовая', price: 1390, discount: 30, image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80', description: 'Легкая футболка из хлопка для повседневной носки.', rating: 4.6, stock: 42 },
-        { id: 10, category: 'fashion', store: 'FashionStyle', product: 'Худи черное', price: 2990, discount: 25, image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80', description: 'Теплое худи с мягкой тканью и комфортным кроем.', rating: 4.9, stock: 21 },
-        { id: 11, category: 'fashion', store: 'UrbanLook', product: 'Кроссовки Urban', price: 4290, discount: 22, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80', description: 'Легкие и стильные кроссовки для повседневной ходьбы.', rating: 4.8, stock: 14 },
-        { id: 12, category: 'fashion', store: 'UrbanLook', product: 'Сумка Everyday', price: 2490, discount: 15, image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=80', description: 'Премиальная сумка на каждый день и путешествия.', rating: 4.7, stock: 19 },
-        { id: 13, category: 'home', store: 'HomeJoy', product: 'Текстильный набор', price: 1590, discount: 18, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', description: 'Комфортный домашний набор для спальни и гостиной.', rating: 4.6, stock: 20 },
-        { id: 14, category: 'home', store: 'HomeJoy', product: 'Одеяло Cozy', price: 3290, discount: 20, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', description: 'Мягкое и теплое одеяло для спокойного сна.', rating: 4.9, stock: 10 },
-        { id: 15, category: 'beauty', store: 'GlowLab', product: 'Крем для лица', price: 890, discount: 14, image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80', description: 'Увлажняющий крем для сияния и мягкости кожи.', rating: 4.8, stock: 27 },
-        { id: 16, category: 'beauty', store: 'GlowLab', product: 'Сыворотка Vit C', price: 1290, discount: 16, image: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=80', description: 'Освежающая сыворотка с витамином C для сияния.', rating: 4.9, stock: 31 }
+        { id: 1, category: 'fashion', store: 'UrbanLook', product: 'Кроссовки Urban', price: 4290, discount: 22, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80', description: 'Стильный и комфортный вариант для прогулок, встреч и повседневной носки.', rating: 4.8, stock: 14 },
+        { id: 2, category: 'fashion', store: 'FashionStyle', product: 'Худи черное', price: 2990, discount: 25, image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80', description: 'Мягкая ткань, комфортный крой и универсальность на каждый день.', rating: 4.9, stock: 18 },
+        { id: 3, category: 'fashion', store: 'FashionStyle', product: 'Футболка базовая', price: 1390, discount: 30, image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80', description: 'Новая базовая модель из мягкого хлопка для городского гардероба.', rating: 4.6, stock: 42 },
+        { id: 4, category: 'tech', store: 'GadgetHub', product: 'Наушники Air Lite', price: 5990, discount: 25, image: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=80', description: 'Тонкий корпус, качественный звук и уютная посадка в течение дня.', rating: 4.8, stock: 12 },
+        { id: 5, category: 'tech', store: 'GadgetHub', product: 'Умная колонка', price: 8890, discount: 18, image: 'https://images.unsplash.com/photo-1518444065439-e933c06ce9cd?auto=format&fit=crop&w=900&q=80', description: 'Голосовой помощник, музыка и удобный контроль с помощью голоса.', rating: 4.7, stock: 11 },
+        { id: 6, category: 'tech', store: 'ТехноДом', product: 'Пылесос X10', price: 11990, discount: 20, image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80', description: 'Мощность и удобство для дома с быстрым уборочным циклом.', rating: 4.9, stock: 9 },
+        { id: 7, category: 'home', store: 'HomeJoy', product: 'Одеяло Cozy', price: 3290, discount: 20, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', description: 'Тёплый и мягкий текстиль для уютного отдыха в любое время года.', rating: 4.9, stock: 10 },
+        { id: 8, category: 'home', store: 'HomeJoy', product: 'Текстильный набор', price: 1590, discount: 18, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', description: 'Подходящий набор для спальни, гостиной и добавления уюта в дом.', rating: 4.6, stock: 20 },
+        { id: 9, category: 'food', store: 'FreshBox', product: 'Яблоки Gala', price: 189, discount: 12, image: 'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=900&q=80', description: 'Сладкие и сочные яблоки для здорового перекуса каждый день.', rating: 4.9, stock: 32 },
+        { id: 10, category: 'food', store: 'СуперМаркет', product: 'Молоко 3,2%', price: 79, discount: 20, image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=900&q=80', description: 'Натуральный продукт с мягким вкусом и качественным составом.', rating: 4.8, stock: 27 },
+        { id: 11, category: 'beauty', store: 'GlowLab', product: 'Крем для лица', price: 890, discount: 14, image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80', description: 'Увлажняющая формула для мягкости, сияния и комфортного ухода.', rating: 4.8, stock: 27 },
+        { id: 12, category: 'beauty', store: 'GlowLab', product: 'Сыворотка Vit C', price: 1290, discount: 16, image: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=80', description: 'Сияние и забота для кожи с витаминами и лёгкой текстурой.', rating: 4.9, stock: 31 }
       ],
       categoryMeta: {
         all: 'Все',
-        food: 'Еда',
-        tech: 'Техника',
         fashion: 'Одежда',
+        tech: 'Техника',
         home: 'Дом',
+        food: 'Еда',
         beauty: 'Красота'
       },
 
@@ -897,12 +860,9 @@
         });
 
         document.getElementById('checkout-btn').addEventListener('click', () => this.checkout());
-
         document.getElementById('close-modal').addEventListener('click', () => this.closeModal());
         document.getElementById('modal').addEventListener('click', (event) => {
-          if (event.target === document.getElementById('modal')) {
-            this.closeModal();
-          }
+          if (event.target === document.getElementById('modal')) this.closeModal();
         });
 
         document.getElementById('modal-add').addEventListener('click', () => {
@@ -975,7 +935,7 @@
           card.className = 'product-card';
 
           const imageWrap = document.createElement('div');
-          imageWrap.className = 'product-image-wrapper';
+          imageWrap.className = 'product-image-wrap';
 
           const image = document.createElement('img');
           image.className = 'product-image';
@@ -1062,7 +1022,7 @@
           addBtn.textContent = 'В корзину';
           addBtn.addEventListener('click', (event) => {
             event.stopPropagation();
-            this.addToCart(item);
+            this.addToCart(item, 1);
           });
 
           btnRow.appendChild(detailBtn);
@@ -1090,9 +1050,7 @@
           el.classList.toggle('active', el.dataset.page === pageName);
         });
 
-        if (pageName === 'cart') {
-          this.renderCart();
-        }
+        if (pageName === 'cart') this.renderCart();
       },
 
       addToCart(item, qty = 1) {
@@ -1105,7 +1063,6 @@
             id: item.id,
             name: item.product,
             price: item.price,
-            category: item.category,
             image: item.image,
             qty: qty
           });
@@ -1163,8 +1120,8 @@
           left.appendChild(text);
 
           const remove = document.createElement('button');
-          remove.className = 'remove-btn';
           remove.type = 'button';
+          remove.className = 'remove-btn';
           remove.textContent = '×';
           remove.addEventListener('click', () => this.removeFromCart(index));
 
@@ -1196,7 +1153,6 @@
         const qty = document.getElementById('modal-qty');
 
         image.src = product.image;
-        image.alt = product.product;
         title.textContent = product.product;
         meta.textContent = product.store + ' • ' + product.rating + ' ★ • Остаток: ' + product.stock;
         desc.textContent = product.description;
@@ -1222,7 +1178,7 @@
 
         const payload = {
           items: this.cart,
-          total: total,
+          total,
           createdAt: new Date().toISOString()
         };
 
