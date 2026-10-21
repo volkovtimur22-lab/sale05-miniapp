@@ -7,22 +7,20 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     :root {
-      --bg: #fff7ee;
-      --bg-2: #ffe8d1;
-      --panel: rgba(255,255,255,0.85);
-      --panel-strong: #fff;
-      --primary: #2b1a12;
-      --primary-2: #4d2b1d;
-      --accent: #ff8b2c;
-      --accent-2: #ffb347;
-      --accent-soft: rgba(255, 139, 44, 0.12);
-      --green: #2e9e6b;
-      --green-soft: rgba(46,158,107,0.1);
-      --danger: #d9534f;
+      --bg: #fff8f2;
+      --bg-2: #ffe9d1;
+      --panel: rgba(255,255,255,0.9);
+      --primary: #2a1a12;
+      --primary-2: #4c2f22;
+      --accent: #ff8f2c;
+      --accent-2: #ffb75b;
+      --accent-soft: rgba(255, 143, 44, 0.12);
+      --success: #2d9d69;
+      --success-soft: rgba(45, 157, 105, 0.12);
       --text: #1f1a17;
-      --muted: #6f5f5b;
-      --line: rgba(33,25,20,0.09);
-      --shadow: 0 18px 38px rgba(43,26,18,0.12);
+      --muted: #6c5d56;
+      --line: rgba(37, 26, 20, 0.09);
+      --shadow: 0 18px 38px rgba(42, 26, 18, 0.12);
       --radius: 22px;
     }
 
@@ -31,7 +29,7 @@
     html, body {
       margin: 0;
       min-height: 100%;
-      background: linear-gradient(180deg, #fffaf5 0%, #fff2e7 40%, #fffaf7 100%);
+      background: linear-gradient(180deg, #fffaf5 0%, #fff5ed 40%, #fffdfb 100%);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
@@ -53,7 +51,7 @@
       position: fixed;
       inset: 0;
       z-index: 200;
-      background: radial-gradient(circle at 50% 30%, #3f220d 0%, #22130b 30%, #120d09 100%);
+      background: radial-gradient(circle at 50% 30%, #462b18 0%, #1f120d 32%, #100b09 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -74,7 +72,7 @@
       width: 220px;
       height: 220px;
       border-radius: 50%;
-      background: rgba(255, 153, 67, 0.12);
+      background: rgba(255, 170, 77, 0.12);
       filter: blur(22px);
       animation: pulseGlow 3s ease-in-out infinite alternate;
     }
@@ -101,9 +99,9 @@
       position: absolute;
       inset: 8px;
       border-radius: 50%;
-      border: 1px solid rgba(255, 178, 102, 0.6);
+      border: 1px solid rgba(255, 189, 119, 0.6);
       animation: spin 5s linear infinite;
-      box-shadow: 0 0 18px rgba(255,176,71,0.18);
+      box-shadow: 0 0 18px rgba(255, 170, 77, 0.18);
     }
 
     .loader-ring::before,
@@ -117,7 +115,7 @@
 
     .loader-ring::after {
       inset: 28px;
-      border-color: rgba(255, 168, 64, 0.5);
+      border-color: rgba(255, 170, 77, 0.5);
       animation: spinReverse 3.5s linear infinite;
     }
 
@@ -135,14 +133,14 @@
       width: 80px;
       height: 80px;
       border-radius: 22px;
-      background: linear-gradient(135deg, #ffb347 0%, #ff8b2c 35%, #a8531f 100%);
+      background: linear-gradient(135deg, #ffb766 0%, #ff8d2f 30%, #9f4d1c 100%);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 900;
       color: white;
       font-size: 2rem;
-      box-shadow: 0 0 26px rgba(255,139,44,0.42);
+      box-shadow: 0 0 26px rgba(255, 143, 44, 0.42);
       animation: breathe 2s ease-in-out infinite;
     }
 
@@ -156,7 +154,7 @@
       letter-spacing: 0.28em;
       font-weight: 800;
       font-size: 0.72rem;
-      color: rgba(255,236,214,0.9);
+      color: rgba(255, 236, 214, 0.9);
     }
 
     .topbar {
@@ -182,13 +180,13 @@
       width: 34px;
       height: 34px;
       border-radius: 12px;
-      background: linear-gradient(135deg, #ffb347 0%, #ff8b2c 45%, #b2541f 100%);
+      background: linear-gradient(135deg, #ffb766 0%, #ff8d2f 52%, #a7571f 100%);
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       font-weight: 900;
-      box-shadow: 0 14px 18px rgba(255,139,44,0.28);
+      box-shadow: 0 14px 18px rgba(255, 143, 44, 0.25);
     }
 
     .brand {
@@ -202,8 +200,8 @@
       min-width: 30px;
       height: 30px;
       border-radius: 999px;
-      background: rgba(255,139,44,0.12);
-      border: 1px solid rgba(255,139,44,0.2);
+      background: rgba(255, 143, 44, 0.12);
+      border: 1px solid rgba(255, 143, 44, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -243,7 +241,7 @@
       right: -30px;
       top: -30px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,179,71,0.38), rgba(255,179,71,0.1) 35%, transparent 70%);
+      background: radial-gradient(circle, rgba(255, 183, 91, 0.32), rgba(255, 183, 91, 0.12) 35%, transparent 70%);
     }
 
     .hero-tag {
@@ -267,7 +265,7 @@
 
     .hero p {
       margin: 0;
-      color: rgba(255, 233, 210, 0.78);
+      color: rgba(255, 233, 210, 0.8);
       line-height: 1.5;
       font-size: 0.9rem;
     }
@@ -343,8 +341,8 @@
     }
 
     .search-input:focus {
-      box-shadow: 0 0 0 4px rgba(255,139,44,0.1);
-      border-color: rgba(255,139,44,0.24);
+      box-shadow: 0 0 0 4px rgba(255,143,44,0.1);
+      border-color: rgba(255,143,44,0.24);
     }
 
     .sort-select {
@@ -382,7 +380,7 @@
       height: 94px;
       border-radius: 18px;
       overflow: hidden;
-      background: linear-gradient(135deg, #fff3e6, #f9e8d8);
+      background: linear-gradient(135deg, #fff3e4, #fbe3d0);
       border: 1px solid rgba(35,25,19,0.04);
     }
 
@@ -440,7 +438,7 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      background: rgba(255, 139, 44, 0.12);
+      background: rgba(255, 143, 44, 0.12);
       color: #b55a20;
       border-radius: 999px;
       padding: 4px 8px;
@@ -491,7 +489,7 @@
     }
 
     .new-price {
-      color: var(--green);
+      color: var(--success);
       font-size: 1.06rem;
       font-weight: 900;
     }
@@ -504,7 +502,7 @@
       padding: 6px 8px;
       font-size: 0.72rem;
       font-weight: 800;
-      background: rgba(255,139,44,0.12);
+      background: rgba(255,143,44,0.12);
       color: #b55a20;
     }
 
@@ -601,7 +599,7 @@
       font-size: 0.7rem;
       font-weight: 800;
       color: #994f1d;
-      background: rgba(255,139,44,0.12);
+      background: rgba(255,143,44,0.12);
       border-radius: 999px;
       padding: 6px 10px;
     }
@@ -674,7 +672,7 @@
       height: 32px;
       border: 1px solid rgba(35,25,19,0.08);
       border-radius: 10px;
-      background: rgba(255,139,44,0.08);
+      background: rgba(255,143,44,0.08);
       color: #b75b1f;
       font-weight: 900;
       cursor: pointer;
@@ -682,8 +680,8 @@
 
     .promo-box {
       margin-top: 18px;
-      background: rgba(255,139,44,0.08);
-      border: 1px solid rgba(255,139,44,0.16);
+      background: rgba(255,143,44,0.08);
+      border: 1px solid rgba(255,143,44,0.16);
       border-radius: 16px;
       padding: 10px 12px;
       display: flex;
@@ -827,7 +825,7 @@
 
     .thumb-row {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 8px;
       margin-top: 10px;
       margin-bottom: 12px;
@@ -882,31 +880,51 @@
       font-weight: 700;
       padding: 6px 10px;
       border-radius: 999px;
-      background: rgba(255,139,44,0.08);
+      background: rgba(255,143,44,0.08);
       color: #9b4e1a;
-      border: 1px solid rgba(255,139,44,0.14);
+      border: 1px solid rgba(255,143,44,0.14);
     }
 
-    .size-picker {
-      display: flex;
+    .customization {
+      display: grid;
+      gap: 12px;
+      margin: 0 0 16px;
+    }
+
+    .custom-group {
+      display: grid;
       gap: 8px;
-      margin-bottom: 14px;
-      flex-wrap: wrap;
     }
 
-    .size-option {
-      padding: 8px 10px;
-      border-radius: 10px;
+    .custom-label {
+      font-size: 0.77rem;
+      font-weight: 800;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .choice-pill {
       border: 1px solid rgba(35,25,19,0.08);
       background: rgba(35,25,19,0.02);
-      font-weight: 800;
       color: var(--text);
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 0.76rem;
+      font-weight: 800;
       cursor: pointer;
+      transition: all 0.15s ease;
     }
 
-    .size-option.active {
-      background: rgba(255,139,44,0.12);
-      border-color: rgba(255,139,44,0.24);
+    .choice-pill.active {
+      background: rgba(255, 143, 44, 0.12);
+      border-color: rgba(255, 143, 44, 0.25);
       color: #9b4e1a;
     }
 
@@ -987,7 +1005,7 @@
       <div class="hero">
         <div class="hero-tag">Fresh delivery</div>
         <h2>Горячая шаурма к тебе за 25 минут</h2>
-        <p>Классические рецепты, острые варианты, лайт-боксы и напитки — всё свежо, быстро и по-настоящему вкусно.</p>
+        <p>Классические рецепты, острые варианты и фирменные наборы — всё свежо, быстро и по-настоящему вкусно.</p>
         <div class="hero-row">
           <div class="mini-pill">🔥 25 min</div>
           <div class="mini-pill">🥬 Fresh</div>
@@ -999,7 +1017,7 @@
 
       <div class="toolbar">
         <div class="search-wrap">
-          <input id="search" class="search-input" type="text" placeholder="Поиск шаурмы и боксов..." />
+          <input id="search" class="search-input" type="text" placeholder="Поиск шаурмы и напитков..." />
         </div>
         <select id="sort" class="sort-select">
           <option value="popular">Популярное</option>
@@ -1073,8 +1091,7 @@
       <div id="modal-meta" class="modal-meta"></div>
       <div id="modal-desc" class="modal-desc"></div>
       <ul id="modal-features" class="modal-feature-list"></ul>
-
-      <div class="size-picker" id="size-picker"></div>
+      <div id="customization" class="customization hidden"></div>
 
       <div class="modal-price-row">
         <div>
@@ -1111,186 +1128,219 @@
       currentModalProduct: null,
       modalQty: 1,
       modalImageIndex: 0,
-      selectedSize: null,
+      selectedMeat: null,
+      selectedFillings: [],
       products: [
         {
           id: 1,
-          category: 'classic',
+          category: 'lavash',
           store: 'Shawarma House',
-          product: 'Классическая шаурма',
+          product: 'Шаурма в лаваше',
           price: 220,
           discount: 12,
           rating: 4.9,
-          description: 'Курица, свежие овощи, фирменный соус и тёплая лавашная лепёшка.',
-          features: ['Курица', 'Свежий огурец', 'Кетчуп/майонез', 'Острый соус по желанию'],
-          sizes: [
-            { label: 'Mini', price: 180 },
-            { label: 'Classic', price: 220 },
-            { label: 'XL', price: 280 }
-          ],
+          description: 'Классическая шаурма в тонком лаваше с курицей, овощами и фирменным соусом.',
+          features: ['Классический лаваш', 'Свежие овощи', 'Фирменный соус'],
+          meatOptions: ['Курица', 'Говядина'],
+          defaultFillings: ['Листья салата', 'Помидоры', 'Огурцы'],
+          fillings: ['Листья салата', 'Помидоры', 'Огурцы', 'Капуста', 'Лук', 'Соус', 'Сыр', 'Перец'],
           gallery: [
             'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1200&q=80',
             'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=1200&q=80',
             'https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=80'
+            'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=1200&q=80'
           ]
         },
         {
           id: 2,
-          category: 'classic',
-          store: 'Shawarma House',
-          product: 'Шаурма с говядиной',
-          price: 260,
-          discount: 10,
+          category: 'bun',
+          store: 'Hot Roll',
+          product: 'Шаурма в булке',
+          price: 240,
+          discount: 15,
           rating: 4.8,
-          description: 'Говядина, лук, томаты, зелень и особый соус с ароматом специй.',
-          features: ['Говядина', 'Сиропный лук', 'Томаты', 'Горчица'],
-          sizes: [
-            { label: 'Classic', price: 260 },
-            { label: 'XL', price: 320 }
-          ],
+          description: 'Нежная булочка, сочное мясо, свежие овощи и острота по вкусу.',
+          features: ['Мягкая булка', 'Сочное мясо', 'Острый с��ус'],
+          meatOptions: ['Курица', 'Говядина'],
+          defaultFillings: ['Листья салата', 'Томаты', 'Лук'],
+          fillings: ['Листья салата', 'Томаты', 'Лук', 'Огурцы', 'Капуста', 'Соус', 'Перец', 'Сыр'],
           gallery: [
             'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=1200&q=80',
             'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=1200&q=80'
+            'https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=80'
           ]
         },
         {
           id: 3,
-          category: 'spicy',
-          store: 'Hot Roll',
-          product: 'Острая шаурма',
-          price: 240,
-          discount: 15,
+          category: 'pita',
+          store: 'Fresh Bite',
+          product: 'Шаурма в пита',
+          price: 250,
+          discount: 10,
           rating: 4.9,
-          description: 'С курицей, перцем халапеньо, острым соусом и маринованным луком.',
-          features: ['Халапеньо', 'Острый соус', 'Маринованный лук', 'Сильный вкус'],
-          sizes: [
-            { label: 'Classic', price: 240 },
-            { label: 'XL', price: 300 }
-          ],
+          description: 'Пита с курицей или говядиной, большим количеством зелени и лёгким соусом.',
+          features: ['Пита', 'Свежая зелень', 'Лёгкий соус'],
+          meatOptions: ['Курица', 'Говядина'],
+          defaultFillings: ['Листья салата', 'Огурцы', 'Помидоры'],
+          fillings: ['Листья салата', 'Огурцы', 'Помидоры', 'Капуста', 'Лук', 'Чесночный соус', 'Тахини', 'Соус'],
           gallery: [
             'https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=1200&q=80',
             'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=1200&q=80',
             'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=80'
           ]
         },
         {
           id: 4,
-          category: 'vegan',
-          store: 'Green Box',
-          product: 'Шаурма Veggie',
-          price: 210,
-          discount: 8,
+          category: 'drinks',
+          store: 'Sip bar',
+          product: 'Кока-кола',
+          price: 110,
+          discount: 0,
           rating: 4.7,
-          description: 'Растительная шаурма с овощами, соусом тахини и хрустящим салатом.',
-          features: ['Овощи', 'Тахини', 'Без мяса', 'Зелёный лук'],
-          sizes: [
-            { label: 'Classic', price: 210 },
-            { label: 'XL', price: 270 }
-          ],
+          description: 'Холодная кола в бутылке, отлично освежает после шаурмы.',
+          features: ['0.5L', 'Холодный', 'Идеально к фастфуду'],
+          fillings: [],
+          meatOptions: [],
           gallery: [
-            'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80'
+            'https://images.unsplash.com/photo-1622483767028-3f66f2b0c1a7?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1532635241-17e820acc59f?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=1200&q=80'
           ]
         },
         {
           id: 5,
-          category: 'combo',
-          store: 'Family Meal',
-          product: 'Комбо “Классик”',
-          price: 420,
-          discount: 18,
-          rating: 5.0,
-          description: 'Шаурма, картофель фри, напиток и соус на выбор.',
-          features: ['2 шаурмы', 'Фри', 'Напиток', 'Соус'],
-          sizes: [
-            { label: '1 person', price: 420 },
-            { label: '2 persons', price: 760 }
-          ],
+          category: 'drinks',
+          store: 'Sip bar',
+          product: 'Пепси',
+          price: 110,
+          discount: 0,
+          rating: 4.6,
+          description: 'Классическая пепси с ярким вкусом и отличной газировкой.',
+          features: ['0.5L', 'Освежает', 'Традиционный вкус'],
+          fillings: [],
+          meatOptions: [],
           gallery: [
-            'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=1200&q=80'
+            'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1622483767028-3f66f2b0c1a7?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=1200&q=80'
           ]
         },
         {
           id: 6,
           category: 'drinks',
           store: 'Sip bar',
-          product: 'Лимонад 0.5L',
-          price: 120,
+          product: 'Айран',
+          price: 90,
           discount: 0,
           rating: 4.7,
-          description: 'Освежающий лимонад с цитрусовой кислинкой и натуральной газировкой.',
-          features: ['0.5L', 'Натуральный вкус', 'Холодный'],
-          sizes: [
-            { label: '0.5L', price: 120 }
-          ],
+          description: 'Натуральный айран с лёгкой кислинкой и свежим вкусом.',
+          features: ['0.5L', 'Натуральный', 'Лёгкий вкус'],
+          fillings: [],
+          meatOptions: [],
           gallery: [
-            'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=1200&q=80',
             'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=1200&q=80',
             'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80'
+            'https://images.unsplash.com/photo-1532635241-17e820acc59f?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=1200&q=80'
           ]
         },
         {
           id: 7,
-          category: 'sides',
-          store: 'Snack Lab',
-          product: 'Картофель фри',
-          price: 150,
-          discount: 10,
+          category: 'drinks',
+          store: 'Garden',
+          product: 'Компот в бутылке 0,5л',
+          price: 120,
+          discount: 0,
           rating: 4.8,
-          description: 'Хрустящий картофель фри с приправой и фирменным соусом.',
-          features: ['Хрустящий', 'Сырный соус', 'Классическая подача'],
-          sizes: [
-            { label: 'S', price: 120 },
-            { label: 'M', price: 150 },
-            { label: 'L', price: 190 }
-          ],
+          description: 'Сладкий домашний компот в удобной бутылке для перекуса.',
+          features: ['0.5L', 'Домашний вкус', 'Сладкий'],
+          fillings: [],
+          meatOptions: [],
           gallery: [
-            'https://images.unsplash.com/photo-1576106673446-1218f42a3f7d?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=1200&q=80'
+            'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1532635241-17e820acc59f?auto=format&fit=crop&w=1200&q=80'
           ]
         },
         {
           id: 8,
-          category: 'sides',
-          store: 'Snack Lab',
-          product: 'Наггетсы',
-          price: 170,
-          discount: 12,
-          rating: 4.6,
-          description: 'Золотистые наггетсы с хрустящей корочкой и сливочным соусом.',
-          features: ['Сытно', 'Хрустящая корочка', 'Детский вариант'],
-          sizes: [
-            { label: '6 шт', price: 170 },
-            { label: '12 шт', price: 310 }
-          ],
+          category: 'drinks',
+          store: 'Garden',
+          product: 'Натуральный сок яблочный',
+          price: 130,
+          discount: 0,
+          rating: 4.8,
+          description: 'Освежающий сок без добавок с натуральным яблочным вкусом.',
+          features: ['100% сок', 'Натуральный', 'Свежий вкус'],
+          fillings: [],
+          meatOptions: [],
           gallery: [
-            'https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=80'
+            'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=1200&q=80'
+          ]
+        },
+        {
+          id: 9,
+          category: 'drinks',
+          store: 'Garden',
+          product: 'Натуральный сок апельсиновый',
+          price: 140,
+          discount: 0,
+          rating: 4.8,
+          description: 'Яркий апельсиновый сок с цитрусовой свежестью и бодрящим вкусом.',
+          features: ['Апельсин', 'Натуральный состав', 'Быстрая энергия'],
+          fillings: [],
+          meatOptions: [],
+          gallery: [
+            'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=1200&q=80'
+          ]
+        },
+        {
+          id: 10,
+          category: 'drinks',
+          store: 'Garden',
+          product: 'Натуральный сок виноградный',
+          price: 150,
+          discount: 0,
+          rating: 4.9,
+          description: 'Натуральный виноградный сок с насыщенным и сладким вкусом.',
+          features: ['Виноград', 'Натуральный', 'Глубокий вкус'],
+          fillings: [],
+          meatOptions: [],
+          gallery: [
+            'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=1200&q=80'
           ]
         }
       ],
       categoryMeta: {
         all: 'Все',
-        classic: 'Классика',
-        spicy: 'Острые',
-        vegan: 'Vegan',
-        combo: 'Комбо',
-        drinks: 'Напитки',
-        sides: 'Закуски'
+        lavash: 'Лаваш',
+        bun: 'Булка',
+        pita: 'Пита',
+        drinks: 'Напитки'
       },
 
       init() {
@@ -1329,7 +1379,7 @@
 
         document.getElementById('modal-add').addEventListener('click', () => {
           if (!this.currentModalProduct) return;
-          this.addToCart(this.currentModalProduct, this.modalQty, this.selectedSize);
+          this.addToCart(this.currentModalProduct, this.modalQty, this.selectedMeat, this.selectedFillings);
           this.closeModal();
         });
 
@@ -1343,7 +1393,7 @@
         });
 
         document.getElementById('promo-input').addEventListener('input', (event) => {
-          event.target.style.borderColor = event.target.value.trim().toUpperCase() === 'SHAWARMA' ? 'rgba(46,158,107,0.4)' : 'rgba(35,25,19,0.08)';
+          event.target.style.borderColor = event.target.value.trim().toUpperCase() === 'SHAWARMA' ? 'rgba(45,157,105,0.4)' : 'rgba(35,25,19,0.08)';
         });
       },
 
@@ -1493,7 +1543,7 @@
           addBtn.type = 'button';
           addBtn.className = 'add-btn';
           addBtn.textContent = 'В корзину';
-          addBtn.addEventListener('click', () => this.addToCart(item, 1, item.sizes[0]));
+          addBtn.addEventListener('click', () => this.addToCart(item, 1, item.meatOptions && item.meatOptions.length ? item.meatOptions[0] : null, item.defaultFillings ? [...item.defaultFillings] : []));
 
           btnRow.appendChild(quickBtn);
           btnRow.appendChild(addBtn);
@@ -1595,7 +1645,7 @@
           addBtn.type = 'button';
           addBtn.className = 'add-btn';
           addBtn.textContent = 'В корзину';
-          addBtn.addEventListener('click', () => this.addToCart(item, 1, item.sizes[0]));
+          addBtn.addEventListener('click', () => this.addToCart(item, 1, item.meatOptions && item.meatOptions.length ? item.meatOptions[0] : null, item.defaultFillings ? [...item.defaultFillings] : []));
 
           btnRow.appendChild(addBtn);
 
@@ -1617,7 +1667,7 @@
         const cartBadge = document.getElementById('cart-badge');
 
         if (!this.cart.length) {
-          list.innerHTML = '<div class="empty-state">Корзина пуста.<br>Добавьте любимую шаурму или набор.</div>';
+          list.innerHTML = '<div class="empty-state">Корзина пуста.<br>Добавьте любимую шаурму или напиток.</div>';
           total.innerHTML = '<span>Итого</span><span>0 ₽</span>';
           cartBadge.textContent = '0';
           return;
@@ -1630,8 +1680,7 @@
           const product = this.getProductById(entry.id);
           if (!product) return;
 
-          const size = entry.size || product.sizes[0];
-          const unitPrice = typeof size === 'object' ? size.price : product.price;
+          const label = this.makeCartLabel(product, entry);
 
           const item = document.createElement('div');
           item.className = 'cart-item';
@@ -1649,11 +1698,11 @@
           const info = document.createElement('div');
           const name = document.createElement('div');
           name.className = 'cart-name';
-          name.textContent = `${product.product}${size && size.label ? ` (${size.label})` : ''}`;
+          name.textContent = label;
 
           const price = document.createElement('div');
           price.className = 'cart-price';
-          price.textContent = `${entry.qty} × ${this.formatCurrency(unitPrice)}`;
+          price.textContent = `${entry.qty} × ${this.formatCurrency(product.price)}`;
 
           info.appendChild(name);
           info.appendChild(price);
@@ -1665,7 +1714,7 @@
           removeBtn.className = 'remove-btn';
           removeBtn.textContent = '×';
           removeBtn.addEventListener('click', () => {
-            this.removeFromCart(product.id, size && size.label ? size.label : null);
+            this.removeFromCart(product.id, entry.meat, entry.fillings);
             this.renderCart();
           });
 
@@ -1673,11 +1722,20 @@
           item.appendChild(removeBtn);
           list.appendChild(item);
 
-          sum += unitPrice * entry.qty;
+          sum += product.price * entry.qty;
         });
 
         total.innerHTML = `<span>Итого</span><span>${this.formatCurrency(sum)}</span>`;
         this.updateCartBadge();
+      },
+
+      makeCartLabel(product, entry) {
+        if (product.meatOptions && product.meatOptions.length) {
+          const meat = entry.meat || product.meatOptions[0];
+          const fillings = entry.fillings && entry.fillings.length ? entry.fillings.join(', ') : 'без дополнений';
+          return `${product.product} • ${meat} • ${fillings}`;
+        }
+        return product.product;
       },
 
       updateCartBadge() {
@@ -1704,23 +1762,31 @@
         this.renderFavorites();
       },
 
-      addToCart(product, qty, size) {
-        const effectiveSize = size || product.sizes[0];
-        const existing = this.cart.find((item) => item.id === product.id && JSON.stringify(item.size || product.sizes[0]) === JSON.stringify(effectiveSize));
+      addToCart(product, qty, meat, fillings) {
+        const finalMeat = product.meatOptions && product.meatOptions.length ? (meat || product.meatOptions[0]) : null;
+        const finalFillings = product.fillings && product.fillings.length ? (fillings ? [...fillings] : [...(product.defaultFillings || [])]) : [];
+
+        const existing = this.cart.find((item) => {
+          if (item.id !== product.id) return false;
+          if (!product.meatOptions || !product.meatOptions.length) return true;
+          return item.meat === finalMeat && JSON.stringify(item.fillings || []) === JSON.stringify(finalFillings);
+        });
+
         if (existing) {
           existing.qty += qty;
         } else {
-          this.cart.push({ id: product.id, qty, size: effectiveSize });
+          this.cart.push({ id: product.id, qty, meat: finalMeat, fillings: finalFillings });
         }
+
         localStorage.setItem('shawarma-cart', JSON.stringify(this.cart));
         this.renderCart();
       },
 
-      removeFromCart(id, sizeLabel) {
+      removeFromCart(id, meat, fillings) {
         this.cart = this.cart.filter((item) => {
-          const product = this.getProductById(item.id);
-          const currentLabel = product && item.size && item.size.label ? item.size.label : (product && product.sizes[0] ? product.sizes[0].label : '');
-          return !(item.id === id && currentLabel === sizeLabel);
+          if (item.id !== id) return true;
+          if (!meat && (!item.meat || !fillings)) return false;
+          return !(item.meat === meat && JSON.stringify(item.fillings || []) === JSON.stringify(fillings || []));
         });
         localStorage.setItem('shawarma-cart', JSON.stringify(this.cart));
         this.renderCart();
@@ -1733,7 +1799,8 @@
         this.currentModalProduct = product;
         this.modalQty = 1;
         this.modalImageIndex = 0;
-        this.selectedSize = product.sizes[0];
+        this.selectedMeat = product.meatOptions && product.meatOptions.length ? product.meatOptions[0] : null;
+        this.selectedFillings = product.defaultFillings ? [...product.defaultFillings] : [];
 
         const modal = document.getElementById('modal');
         const modalImage = document.getElementById('modal-image');
@@ -1745,31 +1812,61 @@
         const qty = document.getElementById('modal-qty');
         const features = document.getElementById('modal-features');
         const thumbRow = document.getElementById('thumb-row');
-        const sizePicker = document.getElementById('size-picker');
+        const customization = document.getElementById('customization');
 
         modalImage.src = product.gallery[0];
         title.textContent = product.product;
-        meta.textContent = `${product.store} • ${product.rating} ★ • ${product.category}`;
+        meta.textContent = `${product.store} • ${product.rating} ★`;
         desc.textContent = product.description;
         old.textContent = this.formatCurrency(Math.round(product.price / (1 - product.discount / 100)));
-        price.textContent = this.formatCurrency(product.sizes[0].price);
+        price.textContent = this.formatCurrency(product.price);
         qty.textContent = String(this.modalQty);
 
         features.innerHTML = product.features.map((feature) => `<li>${feature}</li>`).join('');
 
-        sizePicker.innerHTML = '';
-        product.sizes.forEach((size) => {
-          const btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'size-option' + (this.selectedSize && this.selectedSize.label === size.label ? ' active' : '');
-          btn.textContent = `${size.label} · ${this.formatCurrency(size.price)}`;
-          btn.addEventListener('click', () => {
-            this.selectedSize = size;
-            document.getElementById('modal-price').textContent = this.formatCurrency(size.price);
-            [...document.querySelectorAll('.size-option')].forEach((option) => option.classList.toggle('active', option === btn));
+        if (product.meatOptions && product.meatOptions.length) {
+          customization.classList.remove('hidden');
+          customization.innerHTML = `
+            <div class="custom-group">
+              <div class="custom-label">Мясо</div>
+              <div class="pill-row">
+                ${product.meatOptions.map((option) => `
+                  <button type="button" class="choice-pill ${this.selectedMeat === option ? 'active' : ''}" data-meat="${option}">${option}</button>
+                `).join('')}
+              </div>
+            </div>
+            <div class="custom-group">
+              <div class="custom-label">Начинка</div>
+              <div class="pill-row">
+                ${product.fillings.map((filling) => `
+                  <button type="button" class="choice-pill ${this.selectedFillings.includes(filling) ? 'active' : ''}" data-filling="${filling}">${filling}</button>
+                `).join('')}
+              </div>
+            </div>
+          `;
+
+          customization.querySelectorAll('[data-meat]').forEach((btn) => {
+            btn.addEventListener('click', () => {
+              this.selectedMeat = btn.dataset.meat;
+              customization.querySelectorAll('[data-meat]').forEach((b) => b.classList.toggle('active', b.dataset.meat === this.selectedMeat));
+            });
           });
-          sizePicker.appendChild(btn);
-        });
+
+          customization.querySelectorAll('[data-filling]').forEach((btn) => {
+            btn.addEventListener('click', () => {
+              const filling = btn.dataset.filling;
+              if (this.selectedFillings.includes(filling)) {
+                this.selectedFillings = this.selectedFillings.filter((item) => item !== filling);
+              } else {
+                this.selectedFillings.push(filling);
+              }
+              btn.classList.toggle('active', this.selectedFillings.includes(filling));
+            });
+          });
+        } else {
+          customization.classList.add('hidden');
+          customization.innerHTML = '';
+        }
 
         thumbRow.innerHTML = '';
         product.gallery.forEach((url, index) => {
@@ -1807,7 +1904,8 @@
         modal.setAttribute('aria-hidden', 'true');
         this.currentModalProduct = null;
         this.modalQty = 1;
-        this.selectedSize = null;
+        this.selectedMeat = null;
+        this.selectedFillings = [];
       },
 
       checkout() {
@@ -1815,13 +1913,11 @@
         const discount = promoValue === 'SHAWARMA' ? 0.1 : 0;
         const total = this.cart.reduce((sum, item) => {
           const product = this.getProductById(item.id);
-          const size = item.size || (product && product.sizes[0]);
-          const price = size && size.price ? size.price : product ? product.price : 0;
-          return sum + price * item.qty;
+          return sum + (product ? product.price * item.qty : 0);
         }, 0);
 
         const final = Math.max(0, total * (1 - discount));
-        const message = this.cart.length ? `Ваш заказ на ${this.formatCurrency(final)} успешно оформлен. Спасибо!` : 'Корзина пуста — добавьте шаурму.';
+        const message = this.cart.length ? `Ваш заказ на ${this.formatCurrency(final)} оформлен. Спасибо!` : 'Корзина пуста — добавьте шаурму или напиток.';
 
         if (tg && tg.showPopup) {
           tg.showPopup({ title: 'Shawarma', message });
