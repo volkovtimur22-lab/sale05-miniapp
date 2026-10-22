@@ -58,7 +58,7 @@
       inset: 0;
       background-image:
         linear-gradient(135deg, rgba(255, 246, 235, 0.4), rgba(255, 237, 212, 0.2)),
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200"><rect width="1200" height="1200" fill="%23f7f0e6"/><g opacity="0.32"><circle cx="332" cy="275" r="168" fill="%23ffd0a6"/><circle cx="986" cy="262" r="198" fill="%23ffc3d5"/><circle cx="724" cy="980" r="230" fill="%2396d7ff"/></g></svg>');
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1400" viewBox="0 0 1400 1400"><rect width="1400" height="1400" fill="%23f7efe6"/><g opacity="0.28"><circle cx="240" cy="240" r="180" fill="%23ffd9a7"/><circle cx="1080" cy="260" r="210" fill="%23ffc1d6"/><circle cx="760" cy="1120" r="280" fill="%2396d5ff"/></g></svg>');
       background-size: cover;
       background-position: center;
       filter: blur(5px) saturate(1.2) contrast(1.08);
@@ -86,7 +86,7 @@
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 30;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -135,6 +135,7 @@
       color: var(--primary);
       font-weight: 800;
       font-size: 0.76rem;
+      cursor: pointer;
     }
 
     .page {
@@ -157,7 +158,7 @@
       margin-bottom: 18px;
       background:
         linear-gradient(135deg, rgba(20,12,9,0.7), rgba(71,32,18,0.82)),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='900' viewBox='0 0 1400 900'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%23f3b35b'/%3E%3Cstop offset='1' stop-color='%23d76a2d'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1400' height='900' fill='url(%23a)' opacity='0.18'/%3E%3Cg opacity='0.18'%3E%3Ccircle cx='990' cy='160' r='180' fill='%23fff3d9'/%3E%3Ccircle cx='1260' cy='760' r='260' fill='%23ffb86e'/%3E%3C/g%3E%3C/svg%3E");
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='900' viewBox='0 0 1400 900'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%23f3b35b'/%3E%3Cstop offset='1' stop-color='%23d76a2d'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1400' height='900' fill='url(%23a)' opacity='0.18'/%3E%3Cg opacity='0.20'%3E%3Ccircle cx='980' cy='160' r='180' fill='%23fff3d9'/%3E%3Ccircle cx='1240' cy='760' r='260' fill='%23ffb86e'/%3E%3C/g%3E%3C/svg%3E");
       color: white;
       box-shadow: 0 18px 30px rgba(61, 34, 21, 0.24);
       border: 1px solid rgba(255,255,255,0.12);
@@ -218,6 +219,72 @@
       color: #ffe7cf;
       font-size: 0.72rem;
       font-weight: 800;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .search-wrap {
+      flex: 1;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(35,25,19,0.08);
+      border-radius: 14px;
+      color: var(--text);
+      outline: none;
+    }
+
+    .search-input:focus {
+      box-shadow: 0 0 0 4px rgba(255,143,44,0.1);
+      border-color: rgba(255,143,44,0.24);
+    }
+
+    .sort-select {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(35,25,19,0.08);
+      border-radius: 12px;
+      color: var(--text);
+      padding: 11px 12px;
+      font-weight: 700;
+      outline: none;
+    }
+
+    .categories {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 14px;
+      scrollbar-width: none;
+    }
+
+    .categories::-webkit-scrollbar { display: none; }
+
+    .category {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.8);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .category.active {
+      background: linear-gradient(135deg, #ff9d3f, #ff7a2d);
+      color: white;
+      border-color: rgba(255,138,44,0.2);
+      box-shadow: 0 12px 18px rgba(255,138,44,0.2);
     }
 
     .section-header {
@@ -399,11 +466,13 @@
     }
 
     .ghost-btn, .add-btn,
-    .checkout-btn, .quantity-btn, .modal-action, .remove-btn, .nav-item {
+    .checkout-btn, .quantity-btn, .modal-action, .remove-btn, .nav-item,
+    .apply-promo {
       transition: transform 0.15s ease;
     }
 
-    .ghost-btn:active, .add-btn:active, .checkout-btn:active, .quantity-btn:active, .modal-action:active, .remove-btn:active, .nav-item:active {
+    .ghost-btn:active, .add-btn:active, .checkout-btn:active, .quantity-btn:active,
+    .modal-action:active, .remove-btn:active, .nav-item:active, .apply-promo:active {
       transform: translateY(1px) scale(0.99);
     }
 
@@ -544,6 +613,22 @@
       margin-top: 2px;
     }
 
+    .cart-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    .qty-inline {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(35,25,19,0.04);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(35,25,19,0.08);
+    }
+
     .remove-btn {
       width: 32px;
       height: 32px;
@@ -568,17 +653,30 @@
       color: #9a4b1e;
     }
 
-    .promo-box strong { color: #8d4205; }
+    .promo-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
 
     .promo-input {
-      width: 100%;
-      margin-top: 12px;
+      flex: 1;
       background: rgba(255,255,255,0.8);
       border: 1px solid rgba(35,25,19,0.08);
       border-radius: 10px;
       padding: 10px 12px;
       outline: none;
       color: var(--text);
+    }
+
+    .apply-promo {
+      border: none;
+      border-radius: 10px;
+      background: rgba(255,143,44,0.12);
+      color: #8c4511;
+      padding: 10px 12px;
+      font-weight: 800;
+      cursor: pointer;
     }
 
     .cart-total {
@@ -831,6 +929,12 @@
       cursor: pointer;
       box-shadow: 0 12px 20px rgba(255,118,39,0.22);
     }
+
+    @media (min-width: 560px) {
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
   </style>
 </head>
 <body>
@@ -854,6 +958,19 @@
       </div>
     </section>
 
+    <div class="toolbar">
+      <div class="search-wrap">
+        <input type="text" id="searchInput" class="search-input" placeholder="Поиск шаурмы" />
+      </div>
+      <select id="sortSelect" class="sort-select" aria-label="Сортировка">
+        <option value="popular">Популярные</option>
+        <option value="price-asc">Сначала дешёвые</option>
+        <option value="price-desc">Сначала дорогие</option>
+      </select>
+    </div>
+
+    <div class="categories" id="categories"></div>
+
     <div class="section-header">
       <h3>Популярное</h3>
       <span class="badge-small" id="catalogCount">0 товаров</span>
@@ -873,10 +990,13 @@
 
     <div class="promo-box">
       <strong>Промокод</strong>
-      <span>Не применён</span>
+      <span id="promoStatus">Не применён</span>
     </div>
 
-    <input class="promo-input" type="text" placeholder="Введите промокод" />
+    <div class="promo-row">
+      <input class="promo-input" id="promoInput" type="text" placeholder="Введите промокод" />
+      <button class="apply-promo" id="applyPromo" type="button">Применить</button>
+    </div>
 
     <div class="cart-total">
       <span>Итого:</span>
@@ -951,6 +1071,7 @@
     const products = [
       {
         id: 'lavash',
+        category: 'classic',
         name: 'Шаурма в лаваше',
         store: 'Классика',
         rating: 4.9,
@@ -962,11 +1083,11 @@
         images: ['lavash.jpg', 'lavash.jpg', 'lavash.jpg'],
         meatOptions: ['Говядина', 'Курица', 'Баранина'],
         sauceOptions: ['Кетчуп', 'Чесночный', 'Томатный', 'Сырный'],
-        extraOptions: ['Лук', 'Помидоры', 'Салат', 'Огурцы', 'Перец'],
-        base: ['Лаваш', 'Свежие овощи'],
+        extraOptions: ['Лук', 'Помидоры', 'Салат', 'Огурцы', 'Перец']
       },
       {
         id: 'bun',
+        category: 'combo',
         name: 'Шаурма в булке',
         store: 'Теплый брикет',
         rating: 4.8,
@@ -978,11 +1099,11 @@
         images: ['bun.jpg', 'bun.jpg', 'bun.jpg'],
         meatOptions: ['Говядина', 'Курица', 'Фарш'],
         sauceOptions: ['Кетчуп', 'Чесночный', 'Острый', 'Сырный'],
-        extraOptions: ['Лук', 'Капуста', 'Картошка', 'Салат', 'Маринованный лук'],
-        base: ['Булка', 'Пикантный соус'],
+        extraOptions: ['Лук', 'Капуста', 'Картошка', 'Салат', 'Маринованный лук']
       },
       {
         id: 'pita',
+        category: 'spicy',
         name: 'Шаурма в пите',
         store: 'Оригинал',
         rating: 5.0,
@@ -994,17 +1115,28 @@
         images: ['pita.jpg', 'pita.jpg', 'pita.jpg'],
         meatOptions: ['Говядина', 'Курица', 'Шашлык'],
         sauceOptions: ['Кетчуп', 'Чесночный', 'Томатный', 'Барбекю'],
-        extraOptions: ['Лук', 'Помидоры', 'Салат', 'Огурцы', 'Зелень'],
-        base: ['Пита', 'Соус по вкусу'],
+        extraOptions: ['Лук', 'Помидоры', 'Салат', 'Огурцы', 'Зелень']
       }
     ];
 
+    const CART_KEY = 'shawarma-cart-v1';
+    const promoRules = {
+      SHAWARMA10: 0.10,
+      SAVE10: 0.10,
+      BONUS15: 0.15
+    };
+
     const state = {
-      cart: [],
       currentPage: 'home',
+      currentCategory: 'all',
+      searchQuery: '',
+      sortValue: 'popular',
+      cart: [],
+      promo: '',
+      promoApplied: false,
       modalProductId: null,
       modalQty: 1,
-      modalImageIndex: 0,
+      modalIndex: 0,
       modalSelections: {
         meat: '',
         sauce: '',
@@ -1019,8 +1151,11 @@
     const cartEmpty = document.getElementById('cartEmpty');
     const cartTotal = document.getElementById('cartTotal');
     const cartBadge = document.getElementById('cartBadge');
-    const homePage = document.getElementById('homePage');
-    const cartPage = document.getElementById('cartPage');
+    const promoStatus = document.getElementById('promoStatus');
+    const promoInput = document.getElementById('promoInput');
+    const searchInput = document.getElementById('searchInput');
+    const sortSelect = document.getElementById('sortSelect');
+    const categoriesWrap = document.getElementById('categories');
     const modal = document.getElementById('productModal');
     const modalMainImage = document.getElementById('modalMainImage');
     const modalTitle = document.getElementById('modalTitle');
@@ -1030,15 +1165,91 @@
     const meatOptions = document.getElementById('meatOptions');
     const sauceOptions = document.getElementById('sauceOptions');
     const extraOptions = document.getElementById('extraOptions');
-    const modalQty = document.getElementById('modalQty');
-    const modalPrice = document.getElementById('modalPrice');
+    const modalQtyEl = document.getElementById('modalQty');
+    const modalPriceEl = document.getElementById('modalPrice');
 
     function formatPrice(value) {
-      return `${value} ₽`;
+      return `${Math.round(value)} ₽`;
+    }
+
+    function getProductById(productId) {
+      return products.find(item => item.id === productId);
+    }
+
+    function getCartCount() {
+      return state.cart.reduce((sum, item) => sum + item.qty, 0);
+    }
+
+    function saveCart() {
+      localStorage.setItem(CART_KEY, JSON.stringify(state.cart));
+    }
+
+    function loadCart() {
+      try {
+        const raw = localStorage.getItem(CART_KEY);
+        state.cart = raw ? JSON.parse(raw) : [];
+      } catch (error) {
+        state.cart = [];
+      }
+    }
+
+    function updateCartPill() {
+      cartPill.textContent = String(getCartCount());
+      cartBadge.textContent = String(getCartCount());
+    }
+
+    function setPage(page) {
+      state.currentPage = page;
+      document.getElementById('homePage').classList.toggle('active', page === 'home');
+      document.getElementById('cartPage').classList.toggle('active', page === 'cart');
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.toggle('active', item.dataset.page === page);
+      });
+    }
+
+    function getFilteredProducts() {
+      let items = [...products];
+
+      if (state.currentCategory !== 'all') {
+        items = items.filter(product => product.category === state.currentCategory);
+      }
+
+      if (state.searchQuery) {
+        const query = state.searchQuery.toLowerCase();
+        items = items.filter(product =>
+          product.name.toLowerCase().includes(query) ||
+          product.description.toLowerCase().includes(query) ||
+          product.store.toLowerCase().includes(query)
+        );
+      }
+
+      if (state.sortValue === 'price-asc') {
+        items.sort((a, b) => a.price - b.price);
+      } else if (state.sortValue === 'price-desc') {
+        items.sort((a, b) => b.price - a.price);
+      }
+
+      return items;
+    }
+
+    function renderCategories() {
+      const categories = [
+        { key: 'all', label: 'Все' },
+        { key: 'classic', label: 'Классика' },
+        { key: 'combo', label: 'Комбо' },
+        { key: 'spicy', label: 'Острое' }
+      ];
+
+      categoriesWrap.innerHTML = categories.map(category => `
+        <button class="category ${state.currentCategory === category.key ? 'active' : ''}" type="button" data-category="${category.key}">${category.label}</button>
+      `).join('');
     }
 
     function renderCatalog() {
-      productGrid.innerHTML = products.map((item) => `
+      const items = getFilteredProducts();
+      catalogCount.textContent = `${items.length} товаров`;
+
+      productGrid.innerHTML = items.map((item) => `
         <article class="product-card" data-product-id="${item.id}" data-action="open-modal">
           <div class="product-image-wrap">
             <button class="favorite-btn" type="button" aria-label="Добавить в избранное">❤</button>
@@ -1065,73 +1276,15 @@
           </div>
         </article>
       `).join('');
-
-      catalogCount.textContent = `${products.length} товаров`;
     }
 
-    function getProductById(productId) {
-      return products.find(product => product.id === productId);
-    }
-
-    function getCartCount() {
-      return state.cart.reduce((sum, item) => sum + item.qty, 0);
-    }
-
-    function updateCartPill() {
-      cartPill.textContent = String(getCartCount());
-      cartBadge.textContent = String(getCartCount());
-    }
-
-    function setPage(page) {
-      state.currentPage = page;
-      homePage.classList.toggle('active', page === 'home');
-      cartPage.classList.toggle('active', page === 'cart');
-
-      document.querySelectorAll('.nav-item').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.page === page);
-      });
-    }
-
-    function buildSelectionOptions() {
-      const product = getProductById(state.modalProductId);
-      if (!product) return;
-
-      state.modalSelections.meat = product.meatOptions[0];
-      state.modalSelections.sauce = product.sauceOptions[0];
-      state.modalSelections.extras = [product.extraOptions[0]];
-
-      meatOptions.innerHTML = product.meatOptions.map(option => `
-        <button class="choice-pill active" type="button" data-group="meat" data-value="${option}">${option}</button>
-      `).join('');
-
-      sauceOptions.innerHTML = product.sauceOptions.map(option => `
-        <button class="choice-pill active" type="button" data-group="sauce" data-value="${option}">${option}</button>
-      `).join('');
-
-      extraOptions.innerHTML = product.extraOptions.map(option => `
-        <button class="choice-pill" type="button" data-group="extras" data-value="${option}">${option}</button>
-      `).join('');
-
-      document.querySelectorAll('.choice-pill').forEach(button => {
-        const group = button.dataset.group;
-        const value = button.dataset.value;
-        const selected = group === 'extras'
-          ? state.modalSelections.extras.includes(value)
-          : state.modalSelections[group] === value;
-        button.classList.toggle('active', selected);
-      });
-
-      const price = product.price * state.modalQty;
-      modalPrice.textContent = formatPrice(price);
-    }
-
-    function openModal(productId) {
+    function buildModal(productId) {
       const product = getProductById(productId);
       if (!product) return;
 
       state.modalProductId = productId;
       state.modalQty = 1;
-      state.modalImageIndex = 0;
+      state.modalIndex = 0;
       state.modalSelections = {
         meat: product.meatOptions[0],
         sauce: product.sauceOptions[0],
@@ -1141,15 +1294,23 @@
       modalTitle.textContent = product.name;
       modalMeta.textContent = `${product.store} • ${product.rating} ★ • ${product.discount}`;
       modalDesc.textContent = product.description;
-      modalMainImage.src = product.images[state.modalImageIndex] || product.image;
+      modalMainImage.src = product.images[state.modalIndex];
       modalMainImage.alt = product.name;
-      modalQty.textContent = String(state.modalQty);
-      modalPrice.textContent = formatPrice(product.price);
+      modalQtyEl.textContent = String(state.modalQty);
+      renderThumbs(product);
+      renderChoiceOptions(product);
+      updateModalPrice();
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+    }
 
+    function renderThumbs(product) {
       thumbRow.innerHTML = product.images.map((image, index) => `
-        <img class="thumb ${index === state.modalImageIndex ? 'active' : ''}" src="${image}" alt="${product.name} ${index + 1}" data-index="${index}" />
+        <img class="thumb ${index === state.modalIndex ? 'active' : ''}" src="${image}" alt="${product.name} ${index + 1}" data-thumb-index="${index}" />
       `).join('');
+    }
 
+    function renderChoiceOptions(product) {
       meatOptions.innerHTML = product.meatOptions.map(option => `
         <button class="choice-pill ${state.modalSelections.meat === option ? 'active' : ''}" type="button" data-group="meat" data-value="${option}">${option}</button>
       `).join('');
@@ -1161,9 +1322,14 @@
       extraOptions.innerHTML = product.extraOptions.map(option => `
         <button class="choice-pill ${state.modalSelections.extras.includes(option) ? 'active' : ''}" type="button" data-group="extras" data-value="${option}">${option}</button>
       `).join('');
+    }
 
-      modal.classList.add('show');
-      modal.setAttribute('aria-hidden', 'false');
+    function updateModalPrice() {
+      const product = getProductById(state.modalProductId);
+      if (!product) return;
+      const extraCost = state.modalSelections.extras.length * 25;
+      const total = (product.price + extraCost) * state.modalQty;
+      modalPriceEl.textContent = formatPrice(total);
     }
 
     function closeModal() {
@@ -1171,79 +1337,59 @@
       modal.setAttribute('aria-hidden', 'true');
       state.modalProductId = null;
       state.modalQty = 1;
+      state.modalIndex = 0;
     }
 
-    function updateModalImage(newIndex) {
+    function changeModalImage(direction) {
       const product = getProductById(state.modalProductId);
       if (!product) return;
-
-      const maxIndex = product.images.length - 1;
-      state.modalImageIndex = Math.max(0, Math.min(newIndex, maxIndex));
-
-      modalMainImage.src = product.images[state.modalImageIndex] || product.image;
+      state.modalIndex = Math.max(0, Math.min(state.modalIndex + direction, product.images.length - 1));
+      modalMainImage.src = product.images[state.modalIndex];
       thumbRow.querySelectorAll('.thumb').forEach((thumb, index) => {
-        thumb.classList.toggle('active', index === state.modalImageIndex);
+        thumb.classList.toggle('active', Number(thumb.dataset.thumbIndex) === state.modalIndex);
       });
     }
 
-    function updateModalPrice() {
-      const product = getProductById(state.modalProductId);
-      if (!product) return;
-      const extraCount = state.modalSelections.extras.length;
-      const extraPrice = extraCount * 25;
-      modalPrice.textContent = formatPrice((product.price + extraPrice) * state.modalQty);
+    function applyPromoCode() {
+      const code = promoInput.value.trim().toUpperCase();
+      if (!code) {
+        state.promoApplied = false;
+        state.promo = '';
+        promoStatus.textContent = 'Не применён';
+        return;
+      }
+
+      if (promoRules[code]) {
+        state.promo = code;
+        state.promoApplied = true;
+        promoStatus.textContent = `Скидка ${Math.round(promoRules[code] * 100)}%`;
+      } else {
+        state.promo = '';
+        state.promoApplied = false;
+        promoStatus.textContent = 'Неверный промокод';
+      }
+      renderCart();
     }
 
-    function addToCart() {
-      const product = getProductById(state.modalProductId);
-      if (!product) return;
-
-      const item = {
-        id: `${product.id}-${Date.now()}`,
-        productId: product.id,
-        name: product.name,
-        image: product.image,
-        price: product.price,
-        qty: state.modalQty,
-        meat: state.modalSelections.meat,
-        sauce: state.modalSelections.sauce,
-        extras: [...state.modalSelections.extras],
-      };
-
-      state.cart.push(item);
-      renderCart();
-      closeModal();
-      updateCartPill();
-      setPage('cart');
+    function getPromoDiscount() {
+      if (!state.promo || !promoRules[state.promo]) return 0;
+      return promoRules[state.promo];
     }
 
-    function quickAdd(productId) {
-      const product = getProductById(productId);
-      if (!product) return;
-      state.cart.push({
-        id: `${product.id}-quick-${Date.now()}`,
-        productId: product.id,
-        name: product.name,
-        image: product.image,
-        price: product.price,
-        qty: 1,
-        meat: product.meatOptions[0],
-        sauce: product.sauceOptions[0],
-        extras: [product.extraOptions[0]]
-      });
-      renderCart();
-      updateCartPill();
-      setPage('cart');
+    function calculateTotal() {
+      const subtotal = state.cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const discount = subtotal * getPromoDiscount();
+      return subtotal - discount;
     }
 
     function renderCart() {
-      const total = state.cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const total = calculateTotal();
       cartTotal.textContent = formatPrice(total);
-      cartBadge.textContent = String(state.cart.length);
 
       if (!state.cart.length) {
         cartEmpty.classList.remove('hidden');
         cartList.innerHTML = '';
+        cartBadge.textContent = '0';
         return;
       }
 
@@ -1259,72 +1405,137 @@
                 <div class="cart-price">${summary} • ${item.qty} шт</div>
               </div>
             </div>
-            <button class="remove-btn" type="button" data-remove-id="${item.id}">×</button>
+            <div class="cart-controls">
+              <div class="qty-inline">
+                <button class="quantity-btn" type="button" data-action="decrease" data-item-id="${item.id}">−</button>
+                <span class="qty-value">${item.qty}</span>
+                <button class="quantity-btn" type="button" data-action="increase" data-item-id="${item.id}">+</button>
+              </div>
+              <button class="remove-btn" type="button" data-remove-id="${item.id}">×</button>
+            </div>
           </div>
         `;
       }).join('');
+
+      cartBadge.textContent = String(getCartCount());
+      updateCartPill();
     }
 
-    productGrid.addEventListener('click', (event) => {
-      const button = event.target.closest('[data-action]');
-      if (!button) return;
+    function addToCart() {
+      const product = getProductById(state.modalProductId);
+      if (!product) return;
 
-      const productId = button.dataset.productId;
-      const action = button.dataset.action;
+      const item = {
+        id: `${product.id}-${Date.now()}`,
+        productId: product.id,
+        name: product.name,
+        image: product.image,
+        price: product.price,
+        qty: state.modalQty,
+        meat: state.modalSelections.meat,
+        sauce: state.modalSelections.sauce,
+        extras: [...state.modalSelections.extras]
+      };
 
-      if (action === 'open-modal') {
-        openModal(productId);
-      }
-
-      if (action === 'quick-add') {
-        quickAdd(productId);
-      }
-    });
-
-    document.querySelectorAll('.nav-item').forEach((button) => {
-      button.addEventListener('click', () => {
-        setPage(button.dataset.page);
-      });
-    });
-
-    document.getElementById('cartPill').addEventListener('click', () => {
+      state.cart.push(item);
+      saveCart();
+      renderCart();
+      closeModal();
       setPage('cart');
-    });
+    }
 
-    document.getElementById('closeModal').addEventListener('click', closeModal);
-    modal.addEventListener('click', (event) => {
-      if (event.target === modal) closeModal();
-    });
+    function quickAdd(productId) {
+      const product = getProductById(productId);
+      if (!product) return;
 
-    document.getElementById('prevImage').addEventListener('click', () => {
-      updateModalImage(state.modalImageIndex - 1);
-    });
+      state.cart.push({
+        id: `${product.id}-quick-${Date.now()}`,
+        productId: product.id,
+        name: product.name,
+        image: product.image,
+        price: product.price,
+        qty: 1,
+        meat: product.meatOptions[0],
+        sauce: product.sauceOptions[0],
+        extras: [product.extraOptions[0]]
+      });
+      saveCart();
+      renderCart();
+      setPage('cart');
+    }
 
-    document.getElementById('nextImage').addEventListener('click', () => {
-      updateModalImage(state.modalImageIndex + 1);
-    });
+    function changeQty(itemId, delta) {
+      const item = state.cart.find(cartItem => cartItem.id === itemId);
+      if (!item) return;
+      item.qty = Math.max(1, item.qty + delta);
+      saveCart();
+      renderCart();
+    }
 
-    document.getElementById('minusQty').addEventListener('click', () => {
-      if (state.modalQty > 1) {
-        state.modalQty -= 1;
-        modalQty.textContent = String(state.modalQty);
-        updateModalPrice();
-      }
-    });
+    function removeCartItem(itemId) {
+      state.cart = state.cart.filter(cartItem => cartItem.id !== itemId);
+      saveCart();
+      renderCart();
+      updateCartPill();
+    }
 
-    document.getElementById('plusQty').addEventListener('click', () => {
-      state.modalQty += 1;
-      modalQty.textContent = String(state.modalQty);
-      updateModalPrice();
-    });
+    function initTelegramTheme() {
+      const tg = window.Telegram && window.Telegram.WebApp;
+      if (!tg) return;
 
-    document.getElementById('confirmAdd').addEventListener('click', addToCart);
+      const theme = tg.themeParams || {};
+      const root = document.documentElement;
+
+      if (theme.bg_color) root.style.setProperty('--bg-1', theme.bg_color);
+      if (theme.secondary_bg_color) root.style.setProperty('--panel', theme.secondary_bg_color);
+      if (theme.text_color) root.style.setProperty('--text', theme.text_color);
+      if (theme.hint_color) root.style.setProperty('--muted', theme.hint_color);
+      if (theme.button_color) root.style.setProperty('--accent', theme.button_color);
+      if (theme.button_text_color) root.style.setProperty('--primary', theme.button_text_color);
+      if (theme.link_color) root.style.setProperty('--success', theme.link_color);
+    }
 
     document.addEventListener('click', (event) => {
-      const pill = event.target.closest('.choice-pill');
-      if (pill && state.modalProductId) {
-        const group = pill.dataset.group;
-        const value = pill.dataset.value;
+      const actionTarget = event.target.closest('[data-action]');
+      if (actionTarget) {
+        const { action, productId } = actionTarget.dataset;
+        if (action === 'open-modal') buildModal(productId);
+        if (action === 'quick-add') quickAdd(productId);
+      }
+
+      const categoryButton = event.target.closest('.category');
+      if (categoryButton) {
+        state.currentCategory = categoryButton.dataset.category;
+        renderCategories();
+        renderCatalog();
+      }
+
+      const navButton = event.target.closest('.nav-item');
+      if (navButton) {
+        setPage(navButton.dataset.page);
+      }
+
+      const removeButton = event.target.closest('.remove-btn');
+      if (removeButton) {
+        removeCartItem(removeButton.dataset.removeId);
+      }
+
+      const qtyButton = event.target.closest('[data-action="increase"]');
+      if (qtyButton) changeQty(qtyButton.dataset.itemId, 1);
+
+      const qtyDecrease = event.target.closest('[data-action="decrease"]');
+      if (qtyDecrease) changeQty(qtyDecrease.dataset.itemId, -1);
+
+      const favoriteButton = event.target.closest('.favorite-btn');
+      if (favoriteButton) {
+        favoriteButton.textContent = '♥';
+        favoriteButton.style.color = '#e14848';
+      }
+
+      const choice = event.target.closest('.choice-pill');
+      if (choice && state.modalProductId) {
+        const group = choice.dataset.group;
+        const value = choice.dataset.value;
         const product = getProductById(state.modalProductId);
         if (!product) return;
 
@@ -1338,41 +1549,62 @@
           state.modalSelections[group] = value;
         }
 
-        document.querySelectorAll('.choice-pill').forEach(button => {
-          const buttonGroup = button.dataset.group;
-          const buttonValue = button.dataset.value;
-          const selected = buttonGroup === 'extras'
-            ? state.modalSelections.extras.includes(buttonValue)
-            : state.modalSelections[buttonGroup] === buttonValue;
-          button.classList.toggle('active', selected);
-        });
-
+        renderChoiceOptions(product);
         updateModalPrice();
       }
 
-      const removeButton = event.target.closest('.remove-btn');
-      if (removeButton) {
-        const id = removeButton.dataset.removeId;
-        state.cart = state.cart.filter(item => item.id !== id);
-        renderCart();
-        updateCartPill();
+      const thumb = event.target.closest('.thumb');
+      if (thumb && state.modalProductId) {
+        state.modalIndex = Number(thumb.dataset.thumbIndex);
+        modalMainImage.src = getProductById(state.modalProductId).images[state.modalIndex];
+        renderThumbs(getProductById(state.modalProductId));
       }
     });
 
-    document.addEventListener('click', (event) => {
-      const favoriteButton = event.target.closest('.favorite-btn');
-      if (favoriteButton) {
-        favoriteButton.textContent = '♥';
-        favoriteButton.style.color = '#e14848';
+    document.getElementById('cartPill').addEventListener('click', () => setPage('cart'));
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    document.getElementById('prevImage').addEventListener('click', () => changeModalImage(-1));
+    document.getElementById('nextImage').addEventListener('click', () => changeModalImage(1));
+    document.getElementById('minusQty').addEventListener('click', () => {
+      if (state.modalQty > 1) {
+        state.modalQty -= 1;
+        modalQtyEl.textContent = String(state.modalQty);
+        updateModalPrice();
       }
     });
+    document.getElementById('plusQty').addEventListener('click', () => {
+      state.modalQty += 1;
+      modalQtyEl.textContent = String(state.modalQty);
+      updateModalPrice();
+    });
+    document.getElementById('confirmAdd').addEventListener('click', addToCart);
+    document.getElementById('applyPromo').addEventListener('click', applyPromoCode);
 
-    document.addEventListener('DOMContentLoaded', () => {
+    searchInput.addEventListener('input', (event) => {
+      state.searchQuery = event.target.value;
+      renderCatalog();
+    });
+
+    sortSelect.addEventListener('change', (event) => {
+      state.sortValue = event.target.value;
+      renderCatalog();
+    });
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    function init() {
+      initTelegramTheme();
+      loadCart();
+      renderCategories();
       renderCatalog();
       renderCart();
       updateCartPill();
       setPage('home');
-    });
+    }
+
+    init();
   </script>
 </body>
 </html>
