@@ -982,6 +982,33 @@
       padding: 10px 14px;
     }
 
+    .sbp-box {
+      border: 1px dashed rgba(255,143,44,0.35);
+      background: rgba(255,143,44,0.05);
+      border-radius: 14px;
+      padding: 12px;
+      margin-top: 14px;
+    }
+
+    .sbp-box strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.8rem;
+      color: var(--warning);
+    }
+
+    .sbp-code {
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(35,25,19,0.08);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-top: 8px;
+      word-break: break-all;
+    }
+
     @media (min-width: 560px) {
       .page { padding-left: 24px; padding-right: 24px; }
       .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1132,6 +1159,17 @@
             <span>✓</span>
           </button>
 
+          <button class="method-card" data-payment-method="sbp" type="button">
+            <div style="display:flex; align-items:center; gap:10px; flex:1; min-width:0;">
+              <div class="method-icon">🏦</div>
+              <div>
+                <span class="method-name">СБП / QR</span>
+                <span class="method-sub">Оплата по QR или через банк</span>
+              </div>
+            </div>
+            <span></span>
+          </button>
+
           <button class="method-card" data-payment-method="card" type="button">
             <div style="display:flex; align-items:center; gap:10px; flex:1; min-width:0;">
               <div class="method-icon">💳</div>
@@ -1168,6 +1206,12 @@
             <span>Итого к оплате</span>
             <span id="paymentTotalValue">0 ₽</span>
           </div>
+        </div>
+
+        <div id="sbpInfoBox" class="sbp-box" style="display:none;">
+          <strong>СБП-платёж</strong>
+          <div>Сканируйте QR или используйте реквизиты банка для оплаты по СБП.</div>
+          <div class="sbp-code" id="sbpCode">SBP-ORDER-0000</div>
         </div>
 
         <button class="payment-submit" id="paymentSubmitBtn" type="button">Оплатить</button>
@@ -1338,13 +1382,17 @@
       catalogPage: document.getElementById('catalogPage'),
       favoritesPage: document.getElementById('favoritesPage'),
       closePaymentModalBtn: document.getElementById('closePaymentModalBtn'),
-      closeModalBtn: document.getElementById('closeModalBtn')
+      closeModalBtn: document.getElementById('closeModalBtn'),
+      sbpInfoBox: document.getElementById('sbpInfoBox'),
+      sbpCode: document.getElementById('sbpCode')
     };
 
     const paymentConfig = {
       providerToken: '',
       backendUrl: '/api/payments/create',
-      verifyUrl: '/api/payments/verify'
+      verifyUrl: '/api/payments/verify',
+      sbpUrl: '',
+      sbpQrSeed: 'SHAWARMA-ORDER'
     };
 
     const telegramApp = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
@@ -1518,10 +1566,6 @@
       const total = getTotalWithDiscount();
       refs.totalPrice.textContent = `${formatPrice(total)}`;
       refs.promoAppliedLabel.textContent = state.promo ? state.promo : 'не активен';
-
-      if (state.promo) {
-        refs.promoAppliedLabel.textContent = state.promo;
-      }
     }
 
     function syncPaymentSummary() {
@@ -1675,6 +1719,7 @@
       syncPaymentSummary();
       refs.paymentModal.classList.add('show');
       refs.paymentModal.setAttribute('aria-hidden', 'false');
+      updatePaymentMethodUI();
     }
 
     function closePaymentModal() {
@@ -1682,14 +1727,26 @@
       refs.paymentModal.setAttribute('aria-hidden', 'true');
     }
 
-    function setPaymentMethod(method) {
-      state.paymentMethod = method;
+    function updatePaymentMethodUI() {
+      const selected = state.paymentMethod;
       document.querySelectorAll('.method-card').forEach(card => {
-        const active = card.dataset.paymentMethod === method;
+        const active = card.dataset.paymentMethod === selected;
         card.classList.toggle('active', active);
         const marker = card.querySelector('span:last-child');
         if (marker) marker.textContent = active ? '✓' : '';
       });
+
+      const sbpVisible = selected === 'sbp';
+      refs.sbpInfoBox.style.display = sbpVisible ? 'block' : 'none';
+      if (sbpVisible) {
+        const orderId = `SBP-${Date.now().toString().slice(-8)}`;
+        refs.sbpCode.textContent = orderId;
+      }
+    }
+
+    function setPaymentMethod(method) {
+      state.paymentMethod = method;
+      updatePaymentMethodUI();
     }
 
     function createOrderPayload() {
@@ -1759,6 +1816,25 @@
 
         showToast('Telegram Stars не подключены. Используем демо-оплату.');
         setTimeout(() => completeOrder(), 1200);
+        return;
+      }
+
+      if (state.paymentMethod === 'sbp') {
+        if (paymentConfig.sbpUrl) {
+          try {
+            window.open(`${paymentConfig.sbpUrl}?order=${encodeURIComponent(payload.id)}&sum=${payload.total}`, '_blank');
+            showToast('Открываем оплату через СБП');
+            setTimeout(() => completeOrder(), 1400);
+            return;
+          } catch (error) {
+            console.warn('SBP link error:', error);
+          }
+        }
+
+        const sbpOrderCode = `SBP-${Date.now().toString().slice(-8)}`;
+        refs.sbpCode.textContent = sbpOrderCode;
+        showToast('СБП готов к оплате. Используйте QR/ссылку');
+        setTimeout(() => completeOrder(), 1600);
         return;
       }
 
@@ -1929,6 +2005,7 @@
     });
 
     render();
+    updatePaymentMethodUI();
   </script>
 </body>
 </html>
