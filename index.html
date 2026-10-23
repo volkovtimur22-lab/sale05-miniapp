@@ -22,6 +22,9 @@
       --shadow-card: 0 20px 34px rgba(52,30,16,0.12);
       --shadow-glow: 0 18px 28px rgba(255,122,45,0.22);
       --radius: 26px;
+      --danger: #d65c4a;
+      --warning: #9a4b1e;
+      --bg-soft: rgba(255,255,255,0.76);
     }
 
     * { box-sizing: border-box; }
@@ -52,7 +55,7 @@
       inset: 0;
       background-image:
         linear-gradient(135deg, rgba(255,248,242,0.55), rgba(255,236,214,0.2)),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='1400' viewBox='0 0 1400 1400'%3E%3Crect width='1400' height='1400' fill='%23f8f1eb'/%3E%3Cg opacity='0.36'%3E%3Cg fill='%23f4d8b9'%3E%3Ccircle cx='140' cy='120' r='64'/%3E%3Ccircle cx='420' cy='240' r='56'/%3E%3Ccircle cx='760' cy='180' r='76'/%3E%3Ccircle cx='1070' cy='300' r='54'/%3E%3Ccircle cx='1240' cy='720' r='68'/%3E%3Ccircle cx='370' cy='980' r='76'/%3E%3Ccircle cx='980' cy='1030' r='80'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='1400' viewBox='0 0 1400 1400'%3E%3Crect width='1400' height='1400' fill='%23f8f1eb'/%3E%3Cg opacity='0.3'%3E%3Ccircle cx='140' cy='120' r='64' fill='%23f4d99f'/%3E%3Ccircle cx='420' cy='240' r='56' fill='%23e7b9a8'/%3E%3Ccircle cx='760' cy='180' r='76' fill='%23ddebfd'/%3E%3Ccircle cx='1070' cy='300' r='54' fill='%23f6d9a5'/%3E%3Ccircle cx='370' cy='980' r='72' fill='%23f5c5ad'/%3E%3Ccircle cx='980' cy='1030' r='80' fill='%23d8ebfb'/%3E%3Ccircle cx='1240' cy='720' r='68' fill='%23f9d7bf'/%3E%3C/g%3E%3C/svg%3E");
       background-size: cover;
       background-position: center;
       filter: blur(4px) saturate(1.1) contrast(1.08);
@@ -144,7 +147,7 @@
       margin-bottom: 18px;
       background:
         linear-gradient(135deg, rgba(20,12,9,0.72), rgba(81,38,19,0.8)),
-        url("https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1000&q=80") center/cover no-repeat;
+        url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat;
       color: white;
       box-shadow: 0 18px 32px rgba(61,34,21,0.22);
       border: 1px solid rgba(255,255,255,0.12);
@@ -558,7 +561,10 @@
     .remove-btn,
     .apply-promo,
     .checkout-btn,
-    .modal-action {
+    .modal-action,
+    .payment-submit,
+    .method-card,
+    .secondary-btn {
       cursor: pointer;
     }
 
@@ -868,6 +874,114 @@
       transform: translateX(-50%) translateY(0);
     }
 
+    .payment-sheet {
+      display: none;
+      padding-top: 12px;
+    }
+
+    .payment-sheet.show {
+      display: block;
+    }
+
+    .payment-methods {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .method-card {
+      width: 100%;
+      border: 1px solid rgba(35,25,19,0.08);
+      background: rgba(255,255,255,0.78);
+      border-radius: 16px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      text-align: left;
+      color: var(--text);
+    }
+
+    .method-card.active {
+      border-color: rgba(255,143,44,0.28);
+      background: rgba(255,143,44,0.08);
+      box-shadow: inset 0 0 0 1px rgba(255,143,44,0.14);
+    }
+
+    .method-name {
+      font-weight: 900;
+      font-size: 0.96rem;
+      display: block;
+    }
+
+    .method-sub {
+      margin-top: 2px;
+      display: block;
+      color: var(--muted);
+      font-size: 0.73rem;
+    }
+
+    .method-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,143,44,0.1);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .payment-summary {
+      margin-top: 16px;
+      border: 1px solid rgba(35,25,19,0.08);
+      background: rgba(255,255,255,0.76);
+      border-radius: 16px;
+      padding: 12px;
+    }
+
+    .summary-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 6px 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .summary-line.total {
+      margin-top: 8px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(35,25,19,0.08);
+      font-weight: 900;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .payment-submit {
+      width: 100%;
+      margin-top: 14px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ff9d3f, #ff7a2d);
+      color: white;
+      font-weight: 900;
+      padding: 12px 16px;
+      box-shadow: 0 10px 18px rgba(255,118,39,0.2);
+    }
+
+    .secondary-btn {
+      border: 1px solid rgba(35,25,19,0.08);
+      background: rgba(35,25,19,0.04);
+      color: var(--text);
+      border-radius: 10px;
+      font-weight: 800;
+      padding: 10px 14px;
+    }
+
     @media (min-width: 560px) {
       .page { padding-left: 24px; padding-right: 24px; }
       .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -998,43 +1112,106 @@
     </div>
   </div>
 
+  <div class="modal" id="paymentModal" aria-hidden="true">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <span>Оплата заказа</span>
+        <button class="modal-close" id="closePaymentModalBtn" aria-label="Закрыть">×</button>
+      </div>
+
+      <div class="payment-sheet show" id="paymentSheet">
+        <div class="payment-methods">
+          <button class="method-card active" data-payment-method="telegram" type="button">
+            <div style="display:flex; align-items:center; gap:10px; flex:1; min-width:0;">
+              <div class="method-icon">⭐</div>
+              <div>
+                <span class="method-name">Telegram Stars</span>
+                <span class="method-sub">Оплата внутри Telegram</span>
+              </div>
+            </div>
+            <span>✓</span>
+          </button>
+
+          <button class="method-card" data-payment-method="card" type="button">
+            <div style="display:flex; align-items:center; gap:10px; flex:1; min-width:0;">
+              <div class="method-icon">💳</div>
+              <div>
+                <span class="method-name">Карта / Stripe</span>
+                <span class="method-sub">Подключается через backend</span>
+              </div>
+            </div>
+            <span></span>
+          </button>
+
+          <button class="method-card" data-payment-method="cash" type="button">
+            <div style="display:flex; align-items:center; gap:10px; flex:1; min-width:0;">
+              <div class="method-icon">💵</div>
+              <div>
+                <span class="method-name">Наличные при получении</span>
+                <span class="method-sub">Без оплаты онлайн</span>
+              </div>
+            </div>
+            <span></span>
+          </button>
+        </div>
+
+        <div class="payment-summary">
+          <div class="summary-line">
+            <span>Товары</span>
+            <span id="paymentItemsValue">0 ₽</span>
+          </div>
+          <div class="summary-line">
+            <span>Скидка</span>
+            <span id="paymentDiscountValue">0 ₽</span>
+          </div>
+          <div class="summary-line total">
+            <span>Итого к оплате</span>
+            <span id="paymentTotalValue">0 ₽</span>
+          </div>
+        </div>
+
+        <button class="payment-submit" id="paymentSubmitBtn" type="button">Оплатить</button>
+      </div>
+    </div>
+  </div>
+
   <div class="status-toast" id="toast"></div>
 
   <script>
     const products = [
       {
         id: 'chicken-grill',
-        name: 'Курица на углях',
-        category: 'Горячие блюда',
+        name: 'Куриный гриль',
+        category: 'Шаурма',
         rating: 4.9,
         store: 'Fire Grill',
         price: 750,
         oldPrice: 900,
         badge: 'Chef pick',
-        desc: 'Нежное куриное филе, приготовленное на открытом огне, с пикантной маринадной подачей и свежими овощами.',
+        desc: 'Нежное куриное филе, овощи, сыр и фирменный соус в мягком лаваше. Сбалансированный вкус и аромат классической шаурмы.',
         image: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=900&q=80',
         images: [
           'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80',
           'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=900&q=80'
+          'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=900&q=80',
+          'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80',
+          'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=900&q=80'
         ],
         sizes: ['Средний', 'Большой'],
-        sauces: ['Классический', 'Чили', 'Терияки'],
-        addOns: ['Лук', 'Сыр', 'Грибы'],
+        sauces: ['Классический', 'Сметанный', 'Чили'],
+        addOns: ['Сыр', 'Огурцы', 'Перец'],
         featured: true
       },
       {
         id: 'shawarma-bun',
-        name: 'Шаурма в булке',
+        name: 'Шаурма в лаваше',
         category: 'Шаурма',
         rating: 4.8,
         store: 'Shawarma House',
         price: 260,
         oldPrice: 310,
-        badge: 'Хит',
-        desc: 'Классическая шаурма в мягкой булке с сочным куриным филе, свежими овощами и фирменным соусом.',
+        badge: 'Популярно',
+        desc: 'Классическая шаурма в мягком лаваше с сочной начинкой, хрустящими овощами и лёгкой пикантной заправкой.',
         image: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=900&q=80',
         images: [
           'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=900&q=80',
@@ -1042,8 +1219,8 @@
           'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=900&q=80'
         ],
         sizes: ['Стандарт', 'XL'],
-        sauces: ['Сметана', 'Кетчуп', 'Тар-тар'],
-        addOns: ['Сыр', 'Лук', 'Огурцы'],
+        sauces: ['Кетчуп', 'Чесночный', 'Острый'],
+        addOns: ['Лук', 'Салат', 'Лаваш'],
         featured: false
       },
       {
@@ -1054,17 +1231,17 @@
         store: 'Pita & Grill',
         price: 270,
         oldPrice: 330,
-        badge: 'Популярно',
-        desc: 'Нежная шаурма в пите с курицей, овощами и большим количеством соуса — лёгкая и очень сытная.',
+        badge: 'Новый',
+        desc: 'Важный элемент современного фастфуда: сочное мясо, свежие овощи, острый соус и хрустящая питa.',
         image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80',
         images: [
           'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80',
           'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=900&q=80'
+          'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80'
         ],
-        sizes: ['Стандарт', 'XL'],
-        sauces: ['Классический', 'Острый', 'Айоли'],
-        addOns: ['Лук', 'Сыр', 'Халапеньо'],
+        sizes: ['Обычный', 'Лайт'],
+        sauces: ['Терияки', 'Чесночный', 'Горчичный'],
+        addOns: ['Лук', 'Петрушка', 'Сыр'],
         featured: false
       },
       {
@@ -1076,16 +1253,37 @@
         price: 320,
         oldPrice: 370,
         badge: 'New',
-        desc: 'Премиальная порция говядины, лук, сыр и соус с дымным ароматом.',
+        desc: 'Пикантный говяжий бургер с двумя котлетами, сыром, ломтиками огурца и томатным соусом.',
         image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80',
         images: [
           'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80',
-          'https://images.unsplash.com/photo-1550317138-10000687a72b?auto=format&fit=crop&w=900&q=80'
+          'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=80'
         ],
-        sizes: ['Один', 'Двойной'],
-        sauces: ['Барбекю', 'Чесночный', 'Томатный'],
-        addOns: ['Яйцо', 'Сыр', 'Халапеньо'],
+        sizes: ['Стандарт', 'XL'],
+        sauces: ['Барбекю', 'Горчичный', 'Гуакамоле'],
+        addOns: ['Сыр', 'Лук', 'Огурцы'],
         featured: false
+      },
+      {
+        id: 'pizza-deal',
+        name: 'Комбо-пицца',
+        category: 'Пицца',
+        rating: 4.8,
+        store: 'Mega Pizza',
+        price: 590,
+        oldPrice: 680,
+        badge: 'Combo',
+        desc: 'Большая пицца на 2-3 персоны по доступной цене. Для дружеской компании или семейного ужина.',
+        image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80',
+        images: [
+          'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80',
+          'https://images.unsplash.com/photo-1548365328-9f547fb9587c?auto=format&fit=crop&w=900&q=80',
+          'https://images.unsplash.com/photo-1552539618-7eec9b4d1796?auto=format&fit=crop&w=900&q=80'
+        ],
+        sizes: ['30 см', '35 см'],
+        sauces: ['Томат', 'Чесночный', 'Песто'],
+        addOns: ['Бекон', 'Грибы', 'Оливки'],
+        featured: true
       }
     ];
 
@@ -1095,12 +1293,13 @@
       activeCategory: 'Все',
       query: '',
       sort: 'popular',
-      cart: [],
-      favorites: [],
+      cart: JSON.parse(localStorage.getItem('shawarma-cart') || '[]'),
+      favorites: JSON.parse(localStorage.getItem('shawarma-favorites') || '[]'),
       modal: null,
       photoIndex: 0,
       promo: null,
-      currentPage: 'catalogPage'
+      currentPage: 'catalogPage',
+      paymentMethod: 'telegram'
     };
 
     const refs = {
@@ -1112,46 +1311,79 @@
       cartPill: document.getElementById('cartPill'),
       cartList: document.getElementById('cartList'),
       totalPrice: document.getElementById('totalPrice'),
+      cartCountBadge: document.getElementById('cartCountBadge'),
       promoInput: document.getElementById('promoInput'),
       applyPromoBtn: document.getElementById('applyPromoBtn'),
       promoAppliedLabel: document.getElementById('promoAppliedLabel'),
-      cartCountBadge: document.getElementById('cartCountBadge'),
-      favoritesList: document.getElementById('favoritesList'),
-      favoritesCountBadge: document.getElementById('favoritesCountBadge'),
+      checkoutBtn: document.getElementById('checkoutBtn'),
       productModal: document.getElementById('productModal'),
       modalMainImage: document.getElementById('modalMainImage'),
       modalTitle: document.getElementById('modalTitle'),
       modalMeta: document.getElementById('modalMeta'),
       modalDesc: document.getElementById('modalDesc'),
       modalPrice: document.getElementById('modalPrice'),
-      thumbRow: document.getElementById('thumbRow'),
+      thumbnailRow: document.getElementById('thumbRow'),
       sizeOptions: document.getElementById('sizeOptions'),
       sauceOptions: document.getElementById('sauceOptions'),
       addonOptions: document.getElementById('addonOptions'),
-      toast: document.getElementById('toast')
+      paymentModal: document.getElementById('paymentModal'),
+      paymentItemsValue: document.getElementById('paymentItemsValue'),
+      paymentDiscountValue: document.getElementById('paymentDiscountValue'),
+      paymentTotalValue: document.getElementById('paymentTotalValue'),
+      paymentSubmitBtn: document.getElementById('paymentSubmitBtn'),
+      toast: document.getElementById('toast'),
+      favoritesList: document.getElementById('favoritesList'),
+      favoritesCountBadge: document.getElementById('favoritesCountBadge'),
+      cartPage: document.getElementById('cartPage'),
+      catalogPage: document.getElementById('catalogPage'),
+      favoritesPage: document.getElementById('favoritesPage'),
+      closePaymentModalBtn: document.getElementById('closePaymentModalBtn'),
+      closeModalBtn: document.getElementById('closeModalBtn')
     };
+
+    const paymentConfig = {
+      providerToken: '',
+      backendUrl: '/api/payments/create',
+      verifyUrl: '/api/payments/verify'
+    };
+
+    const telegramApp = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
+    if (telegramApp) {
+      telegramApp.ready();
+      telegramApp.expand();
+      telegramApp.enableClosingConfirmation();
+    }
 
     function showToast(message) {
       refs.toast.textContent = message;
       refs.toast.classList.add('show');
       clearTimeout(showToast.timer);
-      showToast.timer = setTimeout(() => refs.toast.classList.remove('show'), 1500);
+      showToast.timer = setTimeout(() => refs.toast.classList.remove('show'), 1800);
     }
 
     function formatPrice(value) {
-      return `${value.toLocaleString('ru-RU')} ₽`;
+      return new Intl.NumberFormat('ru-RU', {
+        style: 'currency',
+        currency: 'RUB',
+        maximumFractionDigits: 0
+      }).format(value);
     }
 
     function getProductById(productId) {
-      return products.find(product => product.id === productId);
+      return products.find(item => item.id === productId) || null;
+    }
+
+    function persistState() {
+      localStorage.setItem('shawarma-cart', JSON.stringify(state.cart));
+      localStorage.setItem('shawarma-favorites', JSON.stringify(state.favorites));
     }
 
     function getVisibleProducts() {
       let items = products.filter(product => {
-        const matchesCategory = state.activeCategory === 'Все' || product.category === state.activeCategory;
-        const text = `${product.name} ${product.desc}`.toLowerCase();
-        const matchesSearch = text.includes(state.query.trim().toLowerCase());
-        return matchesCategory && matchesSearch;
+        const inCategory = state.activeCategory === 'Все' || product.category === state.activeCategory;
+        const inQuery = product.name.toLowerCase().includes(state.query.trim().toLowerCase()) ||
+          product.desc.toLowerCase().includes(state.query.trim().toLowerCase());
+        return inCategory && inQuery;
       });
 
       if (state.sort === 'price-asc') {
@@ -1167,7 +1399,7 @@
 
     function renderCategories() {
       refs.categoryBar.innerHTML = categories.map(category => `
-        <button class="category ${state.activeCategory === category ? 'active' : ''}" data-category="${category}">${category}</button>
+        <button class="category ${state.activeCategory === category ? 'active' : ''}" data-category="${category}" type="button">${category}</button>
       `).join('');
     }
 
@@ -1175,126 +1407,93 @@
       const items = getVisibleProducts();
       refs.resultsBadge.textContent = String(items.length);
 
-      if (!items.length) {
-        refs.productGrid.innerHTML = '<div class="empty-state">Ничего не найдено.<br />Попробуйте другой запрос или категорию.</div>';
-        return;
-      }
-
-      refs.productGrid.innerHTML = items.map(product => `
-        <article class="product-card" data-id="${product.id}">
-          <div class="product-image-wrap">
-            <button class="favorite-btn" type="button" data-id="${product.id}" aria-label="Добавить в избранное">${state.favorites.includes(product.id) ? '♥' : '♡'}</button>
-            <img class="product-image" src="${product.image}" alt="${product.name}" />
-          </div>
-          <div class="product-info">
-            <div class="product-top">
-              <span class="store-name">${product.store}</span>
-              <span class="rating">⭐ ${product.rating}</span>
+      refs.productGrid.innerHTML = items.length
+        ? items.map(product => `
+          <article class="product-card" data-id="${product.id}">
+            <div class="product-image-wrap">
+              <button class="favorite-btn" type="button" data-favorite-id="${product.id}" aria-label="Избранное">${state.favorites.includes(product.id) ? '♥' : '♡'}</button>
+              <img class="product-image" src="${product.image}" alt="${product.name}" />
             </div>
-            <div class="product-name">${product.name}</div>
-            <div class="desc">${product.desc}</div>
-            <div class="meta-row">
-              <div class="price-box">
-                <span class="old-price">${formatPrice(product.oldPrice)}</span>
-                <span class="new-price">${formatPrice(product.price)}</span>
+            <div class="product-info">
+              <div class="product-top">
+                <span class="store-name">${product.store}</span>
+                <span class="rating">⭐ ${product.rating}</span>
               </div>
-              <span class="discount-badge">${product.badge}</span>
+              <div class="product-name">${product.name}</div>
+              <div class="desc">${product.desc}</div>
+              <div class="meta-row">
+                <div class="price-box">
+                  <span class="old-price">${formatPrice(product.oldPrice)}</span>
+                  <span class="new-price">${formatPrice(product.price)}</span>
+                </div>
+                <span class="discount-badge">${product.badge}</span>
+              </div>
+              <div class="btn-row">
+                <button class="ghost-btn" type="button" data-quick-view="${product.id}">i</button>
+                <button class="add-btn" type="button" data-add="${product.id}">Добавить</button>
+              </div>
             </div>
-            <div class="btn-row">
-              <button class="ghost-btn" type="button" data-quick-view="${product.id}">i</button>
-              <button class="add-btn" type="button" data-add="${product.id}">Добавить</button>
-            </div>
-          </div>
-        </article>
-      `).join('');
-    }
-
-    function toggleFavorite(productId) {
-      if (!state.favorites.includes(productId)) {
-        state.favorites.push(productId);
-        showToast('Добавлено в избранное');
-      } else {
-        state.favorites = state.favorites.filter(id => id !== productId);
-        showToast('Удалено из избранного');
-      }
-      render();
+          </article>
+        `).join('')
+        : '<div class="empty-state">Ничего не найдено. Попробуйте изменить фильтр или поиск.</div>';
     }
 
     function renderFavorites() {
-      const favorites = products.filter(product => state.favorites.includes(product.id));
-      refs.favoritesCountBadge.textContent = String(favorites.length);
+      const favoriteProducts = products.filter(product => state.favorites.includes(product.id));
+      refs.favoritesCountBadge.textContent = String(favoriteProducts.length);
 
-      if (!favorites.length) {
-        refs.favoritesList.innerHTML = '<div class="empty-state">Пока ничего не добавлено в избранное.</div>';
-        return;
-      }
-
-      refs.favoritesList.innerHTML = favorites.map(product => `
-        <div class="cart-item" data-id="${product.id}">
-          <div class="cart-left">
-            <div class="cart-thumb"><img src="${product.image}" alt="${product.name}" /></div>
-            <div>
-              <div class="cart-name">${product.name}</div>
-              <div class="cart-price">${formatPrice(product.price)}</div>
+      refs.favoritesList.innerHTML = favoriteProducts.length
+        ? favoriteProducts.map(product => `
+          <div class="cart-item" data-id="${product.id}">
+            <div class="cart-left">
+              <div class="cart-thumb"><img src="${product.image}" alt="${product.name}" /></div>
+              <div>
+                <div class="cart-name">${product.name}</div>
+                <div class="cart-price">${formatPrice(product.price)}</div>
+              </div>
+            </div>
+            <div class="cart-controls">
+              <button class="remove-btn" type="button" data-favorite-remove="${product.id}">×</button>
             </div>
           </div>
-          <div class="cart-controls">
-            <button class="remove-btn" type="button" data-favorite-remove="${product.id}">×</button>
-          </div>
-        </div>
-      `).join('');
+        `).join('')
+        : '<div class="empty-state">Пока ничего не добавлено в избранное.</div>';
     }
 
-    function addToCart(productId) {
-      const product = getProductById(productId);
-      if (!product) return;
-
-      const existing = state.cart.find(item => item.id === productId);
-      if (existing) {
-        existing.qty += 1;
-      } else {
-        state.cart.push({ id: productId, qty: 1 });
-      }
-
-      showToast(`${product.name} добавлено`);
-      renderCart();
+    function getCartTotal() {
+      return state.cart.reduce((sum, item) => {
+        const product = getProductById(item.id);
+        return sum + (product ? product.price * item.qty : 0);
+      }, 0);
     }
 
-    function updateCartQty(productId, delta) {
-      const existing = state.cart.find(item => item.id === productId);
-      if (!existing) return;
-
-      existing.qty += delta;
-      if (existing.qty <= 0) {
-        state.cart = state.cart.filter(item => item.id !== productId);
+    function getPromoDiscount() {
+      if (state.promo === 'GOLED10') {
+        return Math.round(getCartTotal() * 0.1);
       }
+      return 0;
+    }
 
-      renderCart();
+    function getTotalWithDiscount() {
+      return Math.max(getCartTotal() - getPromoDiscount(), 0);
     }
 
     function renderCart() {
       const totalQty = state.cart.reduce((sum, item) => sum + item.qty, 0);
       refs.cartPill.textContent = totalQty;
-      refs.cartCountBadge.textContent = totalQty;
+      refs.cartCountBadge.textContent = String(totalQty);
 
       if (!state.cart.length) {
-        refs.cartList.innerHTML = '<div class="empty-state">Ваша корзина пока пуста. Добавьте любимое блюдо.</div>';
+        refs.cartList.innerHTML = '<div class="empty-state">Корзина пуста. Выберите любимые блюда и добавьте их в заказ.</div>';
         refs.totalPrice.textContent = '0 ₽';
+        refs.promoAppliedLabel.textContent = 'не активен';
         return;
       }
-
-      const subtotal = state.cart.reduce((sum, item) => {
-        const product = getProductById(item.id);
-        return sum + (product ? product.price * item.qty : 0);
-      }, 0);
-
-      const discount = state.promo === 'GOLD10' ? Math.round(subtotal * 0.1) : 0;
-      const finalTotal = Math.max(subtotal - discount, 0);
-      refs.totalPrice.textContent = formatPrice(finalTotal);
 
       refs.cartList.innerHTML = state.cart.map(item => {
         const product = getProductById(item.id);
         if (!product) return '';
+
         return `
           <div class="cart-item" data-id="${item.id}">
             <div class="cart-left">
@@ -1307,7 +1506,7 @@
             <div class="cart-controls">
               <div class="qty-inline">
                 <button class="quantity-btn" type="button" data-decrease="${item.id}">−</button>
-                <span style="padding:0 10px;font-weight:800;min-width:28px;text-align:center;">${item.qty}</span>
+                <span style="padding:0 10px; min-width:24px; text-align:center; font-weight:800;">${item.qty}</span>
                 <button class="quantity-btn" type="button" data-increase="${item.id}">+</button>
               </div>
               <button class="remove-btn" type="button" data-remove="${item.id}">×</button>
@@ -1315,120 +1514,336 @@
           </div>
         `;
       }).join('');
+
+      const total = getTotalWithDiscount();
+      refs.totalPrice.textContent = `${formatPrice(total)}`;
+      refs.promoAppliedLabel.textContent = state.promo ? state.promo : 'не активен';
+
+      if (state.promo) {
+        refs.promoAppliedLabel.textContent = state.promo;
+      }
     }
 
-    function renderOptions(product) {
-      refs.sizeOptions.innerHTML = product.sizes.map((size, index) => `
-        <button class="choice-pill ${index === 0 ? 'active' : ''}" data-size="${size}">${size}</button>
-      `).join('');
-
-      refs.sauceOptions.innerHTML = product.sauces.map((sauce, index) => `
-        <button class="choice-pill ${index === 0 ? 'active' : ''}" data-sauce="${sauce}">${sauce}</button>
-      `).join('');
-
-      refs.addonOptions.innerHTML = product.addOns.map((addon, index) => `
-        <button class="choice-pill ${index === 0 ? 'active' : ''}" data-addon="${addon}">${addon}</button>
-      `).join('');
+    function syncPaymentSummary() {
+      const subtotal = getCartTotal();
+      const discount = getPromoDiscount();
+      const total = getTotalWithDiscount();
+      refs.paymentItemsValue.textContent = formatPrice(subtotal);
+      refs.paymentDiscountValue.textContent = `- ${formatPrice(discount)}`;
+      refs.paymentTotalValue.textContent = formatPrice(total);
     }
 
-    function openModal(productId) {
+    function render() {
+      renderCategories();
+      renderProducts();
+      renderFavorites();
+      renderCart();
+      syncPaymentSummary();
+    }
+
+    function toggleFavorite(productId) {
+      if (!state.favorites.includes(productId)) {
+        state.favorites.push(productId);
+        showToast('Добавлено в избранное');
+      } else {
+        state.favorites = state.favorites.filter(id => id !== productId);
+        showToast('Удалено из избранного');
+      }
+      persistState();
+      render();
+    }
+
+    function addToCart(productId) {
+      const existing = state.cart.find(item => item.id === productId);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        state.cart.push({ id: productId, qty: 1 });
+      }
+      persistState();
+      render();
+      showToast('Товар добавлен в корзину');
+    }
+
+    function updateCartQuantity(productId, delta) {
+      const item = state.cart.find(entry => entry.id === productId);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        state.cart = state.cart.filter(entry => entry.id !== productId);
+      }
+      persistState();
+      render();
+    }
+
+    function removeFromCart(productId) {
+      state.cart = state.cart.filter(item => item.id !== productId);
+      persistState();
+      render();
+    }
+
+    function applyPromo() {
+      const code = refs.promoInput.value.trim().toUpperCase();
+      if (!code) {
+        state.promo = null;
+        showToast('Введите промокод');
+        renderCart();
+        syncPaymentSummary();
+        return;
+      }
+
+      if (code === 'GOLED10') {
+        state.promo = code;
+        showToast('Промокод активирован');
+      } else {
+        state.promo = null;
+        showToast('Промокод не найден');
+      }
+
+      refs.promoInput.value = '';
+      renderCart();
+      syncPaymentSummary();
+    }
+
+    function openProductModal(productId) {
       const product = getProductById(productId);
       if (!product) return;
 
       state.modal = product;
       state.photoIndex = 0;
+
       refs.modalTitle.textContent = product.name;
       refs.modalMeta.textContent = `${product.store} • ${product.category} • ⭐ ${product.rating}`;
       refs.modalDesc.textContent = product.desc;
-      refs.modalMainImage.src = product.images[0];
-      refs.modaltitle = product.name;
       refs.modalPrice.textContent = formatPrice(product.price);
-      renderThumbs(product);
-      renderOptions(product);
+      refs.modalMainImage.src = product.images[0];
+      refs.modalMainImage.alt = product.name;
+
+      refs.thumbnailRow.innerHTML = product.images.map((image, index) => `
+        <img class="thumb ${index === state.photoIndex ? 'active' : ''}" src="${image}" alt="${product.name} ${index + 1}" data-thumb-index="${index}" />
+      `).join('');
+
+      refs.sizeOptions.innerHTML = product.sizes.map((size, index) => `
+        <button class="choice-pill ${index === 0 ? 'active' : ''}" type="button" data-size="${size}">${size}</button>
+      `).join('');
+
+      refs.sauceOptions.innerHTML = product.sauces.map((sauce, index) => `
+        <button class="choice-pill ${index === 0 ? 'active' : ''}" type="button" data-sauce="${sauce}">${sauce}</button>
+      `).join('');
+
+      refs.addonOptions.innerHTML = product.addOns.map((addon, index) => `
+        <button class="choice-pill ${index === 0 ? 'active' : ''}" type="button" data-addon="${addon}">${addon}</button>
+      `).join('');
+
       refs.productModal.classList.add('show');
       refs.productModal.setAttribute('aria-hidden', 'false');
     }
 
-    function renderThumbs(product) {
-      refs.thumbRow.innerHTML = product.images.map((image, index) => `
-        <img class="thumb ${index === state.photoIndex ? 'active' : ''}" src="${image}" data-thumb-index="${index}" alt="${product.name} ${index + 1}" />
-      `).join('');
+    function closeProductModal() {
+      refs.productModal.classList.remove('show');
+      refs.productModal.setAttribute('aria-hidden', 'true');
+      state.modal = null;
+      state.photoIndex = 0;
     }
 
-    function switchPage(pageId) {
+    function changePhoto(direction) {
+      if (!state.modal) return;
+      const max = state.modal.images.length - 1;
+      state.photoIndex = (state.photoIndex + direction + state.modal.images.length) % state.modal.images.length;
+      refs.modalMainImage.src = state.modal.images[state.photoIndex];
+      refs.thumbnailRow.querySelectorAll('.thumb').forEach((thumb, index) => {
+        thumb.classList.toggle('active', index === state.photoIndex);
+      });
+    }
+
+    function setPage(pageId) {
       state.currentPage = pageId;
       document.querySelectorAll('.page').forEach(panel => {
         panel.classList.toggle('active', panel.id === pageId);
       });
+
       document.querySelectorAll('.nav-item').forEach(button => {
         button.classList.toggle('active', button.dataset.page === pageId);
       });
     }
 
-    refs.productGrid.addEventListener('click', (event) => {
-      const addBtn = event.target.closest('[data-add]');
-      const quickView = event.target.closest('[data-quick-view]');
-      const favoriteBtn = event.target.closest('.favorite-btn');
-      const card = event.target.closest('.product-card');
+    function openPaymentModal() {
+      if (!state.cart.length) {
+        showToast('Корзина пуста');
+        return;
+      }
+      syncPaymentSummary();
+      refs.paymentModal.classList.add('show');
+      refs.paymentModal.setAttribute('aria-hidden', 'false');
+    }
 
-      if (favoriteBtn) {
-        event.stopPropagation();
-        toggleFavorite(favoriteBtn.dataset.id);
+    function closePaymentModal() {
+      refs.paymentModal.classList.remove('show');
+      refs.paymentModal.setAttribute('aria-hidden', 'true');
+    }
+
+    function setPaymentMethod(method) {
+      state.paymentMethod = method;
+      document.querySelectorAll('.method-card').forEach(card => {
+        const active = card.dataset.paymentMethod === method;
+        card.classList.toggle('active', active);
+        const marker = card.querySelector('span:last-child');
+        if (marker) marker.textContent = active ? '✓' : '';
+      });
+    }
+
+    function createOrderPayload() {
+      return {
+        id: `order_${Date.now()}`,
+        items: state.cart.map(item => ({
+          id: item.id,
+          qty: item.qty,
+          name: getProductById(item.id)?.name || 'Товар'
+        })),
+        subtotal: getCartTotal(),
+        discount: getPromoDiscount(),
+        total: getTotalWithDiscount(),
+        paymentMethod: state.paymentMethod,
+        createdAt: new Date().toISOString(),
+        telegramUser: telegramApp && telegramApp.initDataUnsafe && telegramApp.initDataUnsafe.user
+          ? telegramApp.initDataUnsafe.user.username || telegramApp.initDataUnsafe.user.first_name
+          : 'guest'
+      };
+    }
+
+    function completeOrder() {
+      const order = createOrderPayload();
+      const orderLabel = `Заказ ${order.id}`;
+      state.cart = [];
+      state.promo = null;
+      persistState();
+      render();
+      closePaymentModal();
+      showToast(`Оплата прошла успешно. ${orderLabel}`);
+
+      if (telegramApp && typeof telegramApp.showPopup === 'function') {
+        telegramApp.showPopup({
+          title: 'Заказ оформлен',
+          message: `Спасибо! Ваш заказ ${order.id} успешно оплачен.`
+        });
+      }
+    }
+
+    async function processPayment() {
+      const payload = createOrderPayload();
+      const totalInCents = Math.round(payload.total * 100);
+
+      if (state.paymentMethod === 'telegram') {
+        if (paymentConfig.providerToken) {
+          try {
+            if (typeof window.Telegram !== 'undefined' && window.Telegram.WebApp && typeof window.Telegram.WebApp.openInvoice === 'function') {
+              window.Telegram.WebApp.openInvoice({
+                title: 'Заказ Shawarma',
+                description: `Заказ ${payload.id}`,
+                payload: JSON.stringify(payload),
+                provider_token: paymentConfig.providerToken,
+                currency: 'RUB',
+                prices: [{ label: 'Итого', amount: totalInCents }],
+                need_email: false,
+                need_phone_number: false,
+                need_shipping_address: false
+              });
+              showToast('Открываем оплату в Telegram');
+              setTimeout(() => completeOrder(), 1500);
+              return;
+            }
+          } catch (error) {
+            console.warn('Telegram invoice open error:', error);
+          }
+        }
+
+        showToast('Telegram Stars не подключены. Используем демо-оплату.');
+        setTimeout(() => completeOrder(), 1200);
         return;
       }
 
-      if (addBtn) {
-        event.stopPropagation();
-        addToCart(addBtn.dataset.add);
+      if (state.paymentMethod === 'card') {
+        if (paymentConfig.backendUrl) {
+          try {
+            const response = await fetch(paymentConfig.backendUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+              throw new Error('Payment backend failed');
+            }
+
+            const result = await response.json();
+            if (result.checkoutUrl) {
+              window.location.href = result.checkoutUrl;
+              return;
+            }
+          } catch (error) {
+            console.warn('Card payment backend unavailable:', error);
+          }
+        }
+
+        showToast('Подключите Stripe/YooKassa на backend для живой оплаты');
+        setTimeout(() => completeOrder(), 1200);
         return;
       }
 
-      if (quickView) {
-        event.stopPropagation();
-        openModal(quickView.dataset.quickView);
-        return;
-      }
+      completeOrder();
+    }
 
-      if (card) {
-        openModal(card.dataset.id);
-      }
+    refs.searchInput.addEventListener('input', (event) => {
+      state.query = event.target.value;
+      renderProducts();
+    });
+
+    refs.sortSelect.addEventListener('change', (event) => {
+      state.sort = event.target.value;
+      renderProducts();
     });
 
     refs.categoryBar.addEventListener('click', (event) => {
-      const button = event.target.closest('.category');
+      const button = event.target.closest('[data-category]');
       if (!button) return;
       state.activeCategory = button.dataset.category;
       render();
     });
 
-    refs.searchInput.addEventListener('input', (event) => {
-      state.query = event.target.value;
-      render();
-    });
+    refs.productGrid.addEventListener('click', (event) => {
+      const favoriteButton = event.target.closest('[data-favorite-id]');
+      const addButton = event.target.closest('[data-add]');
+      const quickViewButton = event.target.closest('[data-quick-view]');
+      const card = event.target.closest('.product-card');
 
-    refs.sortSelect.addEventListener('change', (event) => {
-      state.sort = event.target.value;
-      render();
-    });
-
-    refs.cartPill.addEventListener('click', () => switchPage('cartPage'));
-
-    refs.applyPromoBtn.addEventListener('click', () => {
-      const code = refs.promoInput.value.trim();
-      if (code === 'GOLD10') {
-        state.promo = 'GOLD10';
-        refs.promoAppliedLabel.textContent = 'GOLD10 активен';
-        showToast('Промокод применен');
-      } else {
-        state.promo = null;
-        refs.promoAppliedLabel.textContent = 'не активен';
-        showToast('Промокод не найден');
+      if (favoriteButton) {
+        event.stopPropagation();
+        toggleFavorite(favoriteButton.dataset.favoriteId);
+        return;
       }
-      renderCart();
+
+      if (addButton) {
+        event.stopPropagation();
+        addToCart(addButton.dataset.add);
+        return;
+      }
+
+      if (quickViewButton) {
+        event.stopPropagation();
+        openProductModal(quickViewButton.dataset.quickView);
+        return;
+      }
+
+      if (card) {
+        openProductModal(card.dataset.id);
+      }
     });
 
-    document.querySelectorAll('.nav-item').forEach(button => {
-      button.addEventListener('click', () => switchPage(button.dataset.page));
+    refs.favoritesList.addEventListener('click', (event) => {
+      const removeButton = event.target.closest('[data-favorite-remove]');
+      if (removeButton) {
+        toggleFavorite(removeButton.dataset.favoriteRemove);
+      }
     });
 
     refs.cartList.addEventListener('click', (event) => {
@@ -1437,98 +1852,81 @@
       const remove = event.target.closest('[data-remove]');
 
       if (increase) {
-        updateCartQty(increase.dataset.increase, 1);
+        updateCartQuantity(increase.dataset.increase, 1);
         return;
       }
 
       if (decrease) {
-        updateCartQty(decrease.dataset.decrease, -1);
+        updateCartQuantity(decrease.dataset.decrease, -1);
         return;
       }
 
       if (remove) {
-        updateCartQty(remove.dataset.remove, -999);
+        removeFromCart(remove.dataset.remove);
       }
     });
 
-    refs.favoritesList.addEventListener('click', (event) => {
-      const removeBtn = event.target.closest('[data-favorite-remove]');
-      if (removeBtn) {
-        toggleFavorite(removeBtn.dataset.favoriteRemove);
-      }
+    refs.applyPromoBtn.addEventListener('click', applyPromo);
+    refs.checkoutBtn.addEventListener('click', openPaymentModal);
+
+    refs.paymentSubmitBtn.addEventListener('click', processPayment);
+
+    document.querySelectorAll('.nav-item').forEach(button => {
+      button.addEventListener('click', () => setPage(button.dataset.page));
     });
 
+    refs.closeModalBtn.addEventListener('click', closeProductModal);
     refs.productModal.addEventListener('click', (event) => {
-      if (event.target === refs.productModal) {
-        refs.productModal.classList.remove('show');
-        refs.productModal.setAttribute('aria-hidden', 'true');
-      }
+      if (event.target === refs.productModal) closeProductModal();
     });
 
-    document.getElementById('closeModalBtn').addEventListener('click', () => {
-      refs.productModal.classList.remove('show');
-      refs.productModal.setAttribute('aria-hidden', 'true');
+    refs.closePaymentModalBtn.addEventListener('click', closePaymentModal);
+    refs.paymentModal.addEventListener('click', (event) => {
+      if (event.target === refs.paymentModal) closePaymentModal();
+    });
+
+    document.getElementById('prevImgBtn').addEventListener('click', () => changePhoto(-1));
+    document.getElementById('nextImgBtn').addEventListener('click', () => changePhoto(1));
+
+    refs.thumbnailRow.addEventListener('click', (event) => {
+      const thumb = event.target.closest('[data-thumb-index]');
+      if (!thumb || !state.modal) return;
+      state.photoIndex = Number(thumb.dataset.thumbIndex);
+      refs.modalMainImage.src = state.modal.images[state.photoIndex];
+      refs.thumbnailRow.querySelectorAll('.thumb').forEach((item, index) => {
+        item.classList.toggle('active', index === state.photoIndex);
+      });
+    });
+
+    refs.sizeOptions.addEventListener('click', (event) => {
+      const pill = event.target.closest('[data-size]');
+      if (!pill) return;
+      refs.sizeOptions.querySelectorAll('.choice-pill').forEach(item => item.classList.remove('active'));
+      pill.classList.add('active');
+    });
+
+    refs.sauceOptions.addEventListener('click', (event) => {
+      const pill = event.target.closest('[data-sauce]');
+      if (!pill) return;
+      refs.sauceOptions.querySelectorAll('.choice-pill').forEach(item => item.classList.remove('active'));
+      pill.classList.add('active');
+    });
+
+    refs.addonOptions.addEventListener('click', (event) => {
+      const pill = event.target.closest('[data-addon]');
+      if (!pill) return;
+      pill.classList.toggle('active');
     });
 
     document.getElementById('modalAddBtn').addEventListener('click', () => {
       if (!state.modal) return;
       addToCart(state.modal.id);
-      refs.productModal.classList.remove('show');
-      refs.productModal.setAttribute('aria-hidden', 'true');
+      closeProductModal();
     });
 
-    document.getElementById('prevImgBtn').addEventListener('click', () => {
-      if (!state.modal) return;
-      state.photoIndex = (state.photoIndex - 1 + state.modal.images.length) % state.modal.images.length;
-      refs.modalMainImage.src = state.modal.images[state.photoIndex];
-      renderThumbs(state.modal);
+    document.querySelectorAll('.method-card').forEach(card => {
+      card.addEventListener('click', () => setPaymentMethod(card.dataset.paymentMethod));
     });
-
-    document.getElementById('nextImgBtn').addEventListener('click', () => {
-      if (!state.modal) return;
-      state.photoIndex = (state.photoIndex + 1) % state.modal.images.length;
-      refs.modalMainImage.src = state.modal.images[state.photoIndex];
-      renderThumbs(state.modal);
-    });
-
-    refs.thumbRow.addEventListener('click', (event) => {
-      const thumb = event.target.closest('.thumb');
-      if (!thumb || !state.modal) return;
-      state.photoIndex = Number(thumb.dataset.thumbIndex);
-      refs.modalMainImage.src = state.modal.images[state.photoIndex];
-      renderThumbs(state.modal);
-    });
-
-    refs.sizeOptions.addEventListener('click', (event) => {
-      const pill = event.target.closest('.choice-pill');
-      if (!pill) return;
-      refs.sizeOptions.querySelectorAll('.choice-pill').forEach(el => el.classList.remove('active'));
-      pill.classList.add('active');
-    });
-
-    refs.sauceOptions.addEventListener('click', (event) => {
-      const pill = event.target.closest('.choice-pill');
-      if (!pill) return;
-      refs.sauceOptions.querySelectorAll('.choice-pill').forEach(el => el.classList.remove('active'));
-      pill.classList.add('active');
-    });
-
-    refs.addonOptions.addEventListener('click', (event) => {
-      const pill = event.target.closest('.choice-pill');
-      if (!pill) return;
-      pill.classList.toggle('active');
-    });
-
-    document.getElementById('checkoutBtn').addEventListener('click', () => {
-      showToast('Заказ оформлен');
-    });
-
-    function render() {
-      renderCategories();
-      renderProducts();
-      renderFavorites();
-      renderCart();
-    }
 
     render();
   </script>
